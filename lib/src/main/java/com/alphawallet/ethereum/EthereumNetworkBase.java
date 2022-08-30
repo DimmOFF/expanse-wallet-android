@@ -9,6 +9,7 @@ import java.util.Map;
 
 public abstract class EthereumNetworkBase { // implements EthereumNetworkRepositoryType
     public static final long MAINNET_ID = 1;
+    public static final long EXPANSE_ID = 2;
     public static final long CLASSIC_ID = 61;
     public static final long POA_ID = 99;
     public static final long KOVAN_ID = 42;
@@ -50,6 +51,8 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
 
 
     public static final String MAINNET_RPC_URL = "https://mainnet.infura.io/v3/da3717f25f824cc1baa32d812386d93f";
+    public static final String EXPANSE_RPC_URL = "https://node.expanse.tech";
+    public static final String EXPANSE_FALLBACK_RPC_URL = "https://node.eggs.cool/rpc";
     public static final String CLASSIC_RPC_URL = "https://www.ethercluster.com/etc";
     public static final String XDAI_RPC_URL = "https://rpc.ankr.com/gnosis";
     public static final String POA_RPC_URL = "https://core.poa.network/";
@@ -88,18 +91,15 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
 
     static Map<Long, NetworkInfo> networkMap = new LinkedHashMap<Long, NetworkInfo>() {
         {
-            put(MAINNET_ID, new NetworkInfo("Ethereum", "ETH", MAINNET_RPC_URL, "https://etherscan.io/tx/",
-                    MAINNET_ID, false));
+            put(MAINNET_ID, new NetworkInfo("Ethereum", "ETH", MAINNET_RPC_URL, "https://etherscan.io/tx/", MAINNET_ID, false));
+            put(EXPANSE_ID, new NetworkInfo("Expanse", "EXP", EXPANSE_RPC_URL,"http://expanscout.com/tx/", EXPANSE_ID, false));
             put(CLASSIC_ID, new NetworkInfo("Ethereum Classic", "ETC", CLASSIC_RPC_URL, "https://blockscout.com/etc/mainnet/tx/",
                     CLASSIC_ID, false));
-            put(XDAI_ID, new NetworkInfo("Gnosis", "xDAi", XDAI_RPC_URL, "https://blockscout.com/xdai/mainnet/tx/",
-                    XDAI_ID, false));
-            put(POA_ID, new NetworkInfo("POA", "POA", POA_RPC_URL, "https://blockscout.com/poa/core/tx/",
-                    POA_ID, false));
+            put(XDAI_ID, new NetworkInfo("Gnosis", "xDAi", XDAI_RPC_URL, "https://blockscout.com/xdai/mainnet/tx/", XDAI_ID, false));
+            put(POA_ID, new NetworkInfo("POA", "POA", POA_RPC_URL, "https://blockscout.com/poa/core/tx/", POA_ID, false));
             put(ARTIS_SIGMA1_ID, new NetworkInfo("ARTIS sigma1", "ATS", ARTIS_SIGMA1_RPC_URL, "https://explorer.sigma1.artis.network/tx/",
                     ARTIS_SIGMA1_ID, false));
-            put(KOVAN_ID, new NetworkInfo("Kovan (Test)", "ETH", KOVAN_RPC_URL, "https://kovan.etherscan.io/tx/",
-                    KOVAN_ID, false));
+            put(KOVAN_ID, new NetworkInfo("Kovan (Test)", "ETH", KOVAN_RPC_URL, "https://kovan.etherscan.io/tx/", KOVAN_ID, false));
             put(ROPSTEN_ID, new NetworkInfo("Ropsten (Test)", "ETH", ROPSTEN_RPC_URL, "https://ropsten.etherscan.io/tx/",
                     ROPSTEN_ID, false));
             put(SOKOL_ID, new NetworkInfo("Sokol (Test)", "POA", SOKOL_RPC_URL, "https://blockscout.com/poa/sokol/tx/",

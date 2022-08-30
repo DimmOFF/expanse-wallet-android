@@ -97,6 +97,11 @@
     {"address": "0xEF68e7C694F40c8202821eDF525dE3782458639f", "name": "", "isPopular": true, "network": 1},
     {"address": "0x5ca9a71b1d01849c0a95490cc00559717fcf0d1d", "name": "", "isPopular": true, "network": 1}
   ],
+  "Expanse":
+  [
+    {"address": "0x331631B4bb93b9B8962faE15860BD538a389395A", "isPopular": false, "network": 2}, #WEXP,
+    {"address": "0xd1365a5Af713cde10C6ac3fB9EDBB2bBbd4B2Ba2", "isPopular": false, "network": 2} #EGG
+  ],
 "xDAI":
   [
     {"address": "0x6a814843de5967cf94d7720ce15cba8b0da81967", "isPopular": false, "network": 100},

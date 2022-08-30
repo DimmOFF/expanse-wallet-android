@@ -105,7 +105,6 @@
     <string name="error_fail_load_tokens">Không tải được danh sách tiền</string>
     <string name="error_create_wallet">Không tạo được ví</string>
 
-    <string name="app_name">AlphaWallet</string>
     <string name="all">Tất cả</string>
     <string name="currency">Tài sản</string>
     <string name="advanced">Tùy chọn nâng cao</string>

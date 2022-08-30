@@ -108,7 +108,6 @@
     <string name="error_fail_load_tokens">တိုကင်စာရင်းပြလုပ်ခြင်းပျက်ပြယ်ပါသည်</string>
     <string name="error_create_wallet">ဝေါလက် အသစ်ပြုလုပ်ခြင်းပျက်ပြယ်ပါသည်</string>
 
-    <string name="app_name">AlphaWallet</string>
     <string name="all">အားလုံး</string>
     <string name="currency">ငွေကြေးများ</string>
     <string name="advanced">အသေးစိတ်အဆင့်မြှင့်တင်ခြင်း</string>

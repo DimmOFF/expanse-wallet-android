@@ -104,7 +104,6 @@
     <string name="error_fail_load_tokens">Echec du chargement de la liste des tokens</string>
     <string name="error_create_wallet">Impossible de créer un portefeuille</string>
 
-    <string name="app_name">AlphaWallet</string>
     <string name="all">Tous</string>
     <string name="currency">Devises</string>
     <string name="advanced">Options avancées</string>

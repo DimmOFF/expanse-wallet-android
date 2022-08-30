@@ -14,6 +14,7 @@
 
     <!-- Network Palette  -->
     <color name="mainnet">#2986AF</color>
+    <color name="expanse">#f26d5f</color>
     <color name="ropsten">#FF4A8D</color>
     <color name="kovan">#70578D</color>
     <color name="rinkeby">#F6C343</color>
