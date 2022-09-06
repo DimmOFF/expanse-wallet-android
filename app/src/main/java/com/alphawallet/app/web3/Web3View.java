@@ -346,12 +346,10 @@ public class Web3View extends WebView {
         {
             super.onPageStarted(view, url, favicon);
             clearCache(true);
-            if (!redirect)
-            {
-                view.evaluateJavascript(internalClient.getProviderString(view), null);
-                view.evaluateJavascript(internalClient.getInitString(view), null);
-                internalClient.resetInject();
-            }
+
+            view.evaluateJavascript(internalClient.getProviderString(view), null);
+            view.evaluateJavascript(internalClient.getInitString(view), null);
+            internalClient.resetInject();
 
             redirect = false;
         }

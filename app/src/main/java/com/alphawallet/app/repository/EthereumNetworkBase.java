@@ -89,7 +89,7 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
 {
     public static final String COVALENT = "[COVALENT]";
 
-    private static final String DEFAULT_HOMEPAGE = "https://alphawallet.com/browser/";
+    private static final String DEFAULT_HOMEPAGE = "https://www.eggs.cool/";
 
     private static final String POLYGON_HOMEPAGE = "https://alphawallet.com/browser-item-category/polygon/";
 
@@ -201,21 +201,21 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     //If your wallet prioritises xDai for example, you may want to move the XDAI_ID to the front of this list,
     //Then xDai would appear as the first token at the top of the wallet
     private static final List<Long> hasValue = new ArrayList<>(Arrays.asList(
-            MAINNET_ID, EXPANSE_ID, CLASSIC_ID, XDAI_ID, POA_ID, ARTIS_SIGMA1_ID, BINANCE_MAIN_ID, HECO_ID, AVALANCHE_ID,
+            EXPANSE_ID, MAINNET_ID, CLASSIC_ID, XDAI_ID, POA_ID, ARTIS_SIGMA1_ID, BINANCE_MAIN_ID, HECO_ID, AVALANCHE_ID,
             FANTOM_ID, MATIC_ID, OPTIMISTIC_MAIN_ID, CRONOS_MAIN_ID, ARBITRUM_MAIN_ID, PALM_ID, KLAYTN_ID, IOTEX_MAINNET_ID, AURORA_MAINNET_ID, MILKOMEDA_C1_ID,
             PHI_NETWORK_MAIN_ID));
 
     // for reset built-in network
     private static final LongSparseArray<NetworkInfo> builtinNetworkMap = new LongSparseArray<NetworkInfo>() {
         {
-            put(MAINNET_ID, new NetworkInfo(C.ETHEREUM_NETWORK_NAME, C.ETH_SYMBOL,
-                    MAINNET_RPC_URL,
-                    "https://cn.etherscan.com/tx/", MAINNET_ID,
-                    MAINNET_FALLBACK_RPC_URL, "https://api-cn.etherscan.com/api?"));
             put(EXPANSE_ID, new NetworkInfo(C.EXPANSE_NETWORK_NAME, C.EXP_SYMBOL,
                     EXPANSE_RPC_URL,
                     "http://expanscout.com/tx/", EXPANSE_ID, EXPANSE_FALLBACK_RPC_URL,
                     "http://expanscout.com/api?"));
+            put(MAINNET_ID, new NetworkInfo(C.ETHEREUM_NETWORK_NAME, C.ETH_SYMBOL,
+                    MAINNET_RPC_URL,
+                    "https://cn.etherscan.com/tx/", MAINNET_ID,
+                    MAINNET_FALLBACK_RPC_URL, "https://api-cn.etherscan.com/api?"));
             put(CLASSIC_ID, new NetworkInfo(C.CLASSIC_NETWORK_NAME, C.ETC_SYMBOL,
                     CLASSIC_RPC_URL,
                     "https://blockscout.com/etc/mainnet/tx/", CLASSIC_ID, CLASSIC_RPC_URL,

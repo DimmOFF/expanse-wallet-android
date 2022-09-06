@@ -1,6 +1,7 @@
 package com.alphawallet.app.ui.widget.holder;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -24,6 +25,9 @@ public class ManageTokensHolder extends BinderViewHolder<ManageTokensData> {
     public ManageTokensHolder(int res_id, ViewGroup parent) {
         super(res_id, parent);
         button = findViewById(R.id.primary_button);
+
+        //TODO: Hide This button until buy exp functionality will be implemented
+        button.setVisibility(View.GONE);
     }
 
     public void setOnTokenClickListener(TokensAdapterCallback tokensAdapterCallback) {

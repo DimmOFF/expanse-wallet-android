@@ -99,8 +99,8 @@
   ],
   "Expanse":
   [
-    {"address": "0x331631B4bb93b9B8962faE15860BD538a389395A", "isPopular": false, "network": 2}, #WEXP,
-    {"address": "0xd1365a5Af713cde10C6ac3fB9EDBB2bBbd4B2Ba2", "isPopular": false, "network": 2} #EGG
+    {"address": "0x331631B4bb93b9B8962faE15860BD538a389395A", "name": "WEXP", "isPopular": true, "network": 2},
+    {"address": "0xd1365a5Af713cde10C6ac3fB9EDBB2bBbd4B2Ba2", "name": "EGG", "isPopular": true, "network": 2}
   ],
 "xDAI":
   [

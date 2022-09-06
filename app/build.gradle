@@ -52,7 +52,7 @@ detekt {
 android_lint_reporter {
     lintFilePath = "./build/reports/lint-results-analyticsDebug.xml"
     detektFilePath = "./build/reports/detekt/detekt.xml"
-    githubOwner = "AlphaWallet"
+    githubOwner = "DimmOFF"
     githubRepositoryName = "alpha-wallet-android"
     showLog = true // optional - default to false, show extra information, will slow things down
 }
@@ -72,23 +72,25 @@ android {
         }
     }
     defaultConfig {
-        versionCode 201
-        versionName "3.58.2"
+        versionCode 1
+        versionName "0.9.0"
 
-        applicationId "io.stormbird.wallet"
+        applicationId "com.dmflabs.expwallet"
         minSdkVersion 23
         targetSdkVersion 32
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments clearPackageData: 'true'
+
+        //These keys are not used for Expanse
         def XInfuraAPI = "XInfuraAPI"
         //Put your Infura key here, NB with over 30 - 40 users this API key will rate limit, it's only here for bootstrapping a free build
-        def DEFAULT_INFURA_API_KEY = "\"32eb6c2c002149e2b49106c8e14f5ef4\""
+        def DEFAULT_INFURA_API_KEY = "\"...\""
         def DEFAULT_OPENSEA_API_KEY = "\"...\""; //Put your OpenSea developer API key in here, otherwise you are reliant on the backup NFT fetch method (which usually works ok)
-        def DEFAULT_POLYGONSCAN_API_KEY = "\"\""; //Put your Polygonscan developer API key in here to get access to Polygon/Mumbai token discovery and transactions
-        def DEFAULT_AURORA_API_KEY = "\"HFDDY5BNKGXBB82DE2G8S64C3C41B76PYI\""; //Put your Aurorascan.dev API key here - this one will rate limit as it is common
+        def DEFAULT_POLYGONSCAN_API_KEY = "\"...\""; //Put your Polygonscan developer API key in here to get access to Polygon/Mumbai token discovery and transactions
+        def DEFAULT_AURORA_API_KEY = "\"...\""; //Put your Aurorascan.dev API key here - this one will rate limit as it is common
 
         buildConfigField 'int', 'DB_VERSION', '45'
-        buildConfigField "String", XInfuraAPI, DEFAULT_INFURA_API_KEY
+        //buildConfigField "String", XInfuraAPI, DEFAULT_INFURA_API_KEY
 
         ndk {
             abiFilters "armeabi-v7a", "x86", "x86_64", "arm64-v8a"
@@ -102,9 +104,9 @@ android {
 
         externalNativeBuild {
             cmake {
-                cFlags "-DIFKEY=\\\"" + DEFAULT_INFURA_API_KEY + "\\\""
-                cFlags "-DOSKEY=\\\"" + DEFAULT_OPENSEA_API_KEY + "\\\""
-                cFlags "-DPSKEY=\\\"" + DEFAULT_POLYGONSCAN_API_KEY + "\\\""
+               // cFlags "-DIFKEY=\\\"" + DEFAULT_INFURA_API_KEY + "\\\""
+               // cFlags "-DOSKEY=\\\"" + DEFAULT_OPENSEA_API_KEY + "\\\""
+               // cFlags "-DPSKEY=\\\"" + DEFAULT_POLYGONSCAN_API_KEY + "\\\""
               //  cFlags "-DASKEY=\\\"" + DEFAULT_AURORA_API_KEY + "\\\""
             }
         }

@@ -800,7 +800,7 @@
     <string name="action_save_alert">သတိပေးရန်ကိုသိမ်းဆည်းပါ</string>
     <string name="alerts_will_appear_here">သတိပေးချက်များကို ထိုနေရာတွင်ဖော်ပြမည်</string>
     <string name="token_text">တိုကင်</string>
-    <string name="buy_eth">ETHဝယ်မည်</string>
+    <string name="buy_exp">EXPဝယ်မည်</string>
     <string name="reload_token_data_desc">သိမ်းဆည်းထားသောတိုကင်အချက်အလက်များကို ပြန်လည်သတ်မှတ်မည် (ဥပမာ-မှတ်တမ်းယူထားသော လက်ကျန်ငွေများအပါအဝင်)။ AlphaWallet မှ သင်ဝေါလက်၏ လက်ရှိအခြေအနေကို ပြန်လည်ဖော်ပြပါလိမ့်မည်။ သင်၏သော့များနှင့်ပိုင်ဆိုင်မှုများကို ထိခိုက်မှုမရှိပါ။</string>
 
     <string name="title_activity_add_custom_rpcnetwork">သီးသန့် RPC ကွန်ရက်ကိုထည့်သွင်းမည်</string>

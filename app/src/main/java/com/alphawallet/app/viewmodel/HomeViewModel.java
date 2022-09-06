@@ -529,6 +529,7 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     public void tryToShowEmailPrompt(Context context, View successOverlay, Handler handler, Runnable onSuccessRunnable) {
+        /* Turn off prompting email
         if (preferenceRepository.getLaunchCount() == 4) {
             EmailPromptView emailPromptView = new EmailPromptView(context, successOverlay, handler, onSuccessRunnable);
             BottomSheetDialog emailPromptDialog = new BottomSheetDialog(context);
@@ -540,6 +541,7 @@ public class HomeViewModel extends BaseViewModel {
             emailPromptDialog.setOnShowListener(dialog -> behavior.setPeekHeight(emailPromptView.getHeight()));
             emailPromptDialog.show();
         }
+         */
     }
 
     public void tryToShowWhatsNewDialog(Context context) {
