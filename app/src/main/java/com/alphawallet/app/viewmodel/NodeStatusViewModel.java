@@ -20,6 +20,6 @@ public class NodeStatusViewModel extends BaseViewModel {
 
     public NetworkInfo[] getNetworkList()
     {
-        return networkRepository.getAvailableNetworkList();
+        return networkRepository.getAllActiveNetworks();
     }
 }

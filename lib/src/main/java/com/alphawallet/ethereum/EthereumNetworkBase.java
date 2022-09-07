@@ -52,7 +52,6 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
 
     public static final String MAINNET_RPC_URL = "https://mainnet.infura.io/v3/da3717f25f824cc1baa32d812386d93f";
     public static final String EXPANSE_RPC_URL = "https://node.expanse.tech";
-    public static final String EXPANSE_FALLBACK_RPC_URL = "https://node.eggs.cool/rpc";
     public static final String CLASSIC_RPC_URL = "https://www.ethercluster.com/etc";
     public static final String XDAI_RPC_URL = "https://rpc.ankr.com/gnosis";
     public static final String POA_RPC_URL = "https://core.poa.network/";

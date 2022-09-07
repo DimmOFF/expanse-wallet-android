@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.XDAI_ID;
 
@@ -59,18 +60,25 @@ public class EthereumNetworkRepository extends EthereumNetworkBase
         KnownContract knownContract = readContracts();
         if (knownContract == null) return;
 
-        if (networkFilters == null || networkFilters.contains(MAINNET_ID))
+//        if (networkFilters == null || networkFilters.contains(MAINNET_ID))
+//        {
+//            for (UnknownToken unknownToken: knownContract.getMainNet())
+//            {
+//                popularTokens.put(unknownToken.address.toLowerCase(), new ContractLocator(unknownToken.address, MAINNET_ID));
+//            }
+//        }
+//        if (networkFilters == null || networkFilters.contains(XDAI_ID))
+//        {
+//            for (UnknownToken unknownToken: knownContract.getXDAI())
+//            {
+//                popularTokens.put(unknownToken.address.toLowerCase(), new ContractLocator(unknownToken.address, XDAI_ID));
+//            }
+//        }
+        if (networkFilters == null || networkFilters.contains(EXPANSE_ID))
         {
-            for (UnknownToken unknownToken: knownContract.getMainNet())
+            for (UnknownToken unknownToken: knownContract.getExpanse())
             {
-                popularTokens.put(unknownToken.address.toLowerCase(), new ContractLocator(unknownToken.address, MAINNET_ID));
-            }
-        }
-        if (networkFilters == null || networkFilters.contains(XDAI_ID))
-        {
-            for (UnknownToken unknownToken: knownContract.getXDAI())
-            {
-                popularTokens.put(unknownToken.address.toLowerCase(), new ContractLocator(unknownToken.address, XDAI_ID));
+                popularTokens.put(unknownToken.address.toLowerCase(), new ContractLocator(unknownToken.address, EXPANSE_ID));
             }
         }
     }

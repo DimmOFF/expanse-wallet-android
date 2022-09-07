@@ -100,7 +100,8 @@
   "Expanse":
   [
     {"address": "0x331631B4bb93b9B8962faE15860BD538a389395A", "name": "WEXP", "isPopular": true, "network": 2},
-    {"address": "0xd1365a5Af713cde10C6ac3fB9EDBB2bBbd4B2Ba2", "name": "EGG", "isPopular": true, "network": 2}
+    {"address": "0xd1365a5Af713cde10C6ac3fB9EDBB2bBbd4B2Ba2", "name": "EGG", "isPopular": true, "network": 2},
+    {"address": "0x9D2761A714b5b2EfA325a8a3eee21BE32AACeB4A", "name": "LOVE", "isPopular": true, "network": 2}
   ],
 "xDAI":
   [

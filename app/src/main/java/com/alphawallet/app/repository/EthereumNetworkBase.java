@@ -200,11 +200,11 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     //Note: This list also determines the order of display for main net chains in the wallet.
     //If your wallet prioritises xDai for example, you may want to move the XDAI_ID to the front of this list,
     //Then xDai would appear as the first token at the top of the wallet
-    private static final List<Long> hasValue = new ArrayList<>(Arrays.asList(
-            MAINNET_ID, EXPANSE_ID, CLASSIC_ID, XDAI_ID, POA_ID, ARTIS_SIGMA1_ID, BINANCE_MAIN_ID, HECO_ID, AVALANCHE_ID,
-            FANTOM_ID, MATIC_ID, OPTIMISTIC_MAIN_ID, CRONOS_MAIN_ID, ARBITRUM_MAIN_ID, PALM_ID, KLAYTN_ID, IOTEX_MAINNET_ID, AURORA_MAINNET_ID, MILKOMEDA_C1_ID,
-            PHI_NETWORK_MAIN_ID));
-
+//    private static final List<Long> hasValue = new ArrayList<>(Arrays.asList(
+//            MAINNET_ID, EXPANSE_ID, CLASSIC_ID, XDAI_ID, POA_ID, ARTIS_SIGMA1_ID, BINANCE_MAIN_ID, HECO_ID, AVALANCHE_ID,
+//            FANTOM_ID, OPTIMISTIC_MAIN_ID, CRONOS_MAIN_ID, ARBITRUM_MAIN_ID, PALM_ID, KLAYTN_ID, IOTEX_MAINNET_ID, AURORA_MAINNET_ID, MILKOMEDA_C1_ID,
+//            PHI_NETWORK_MAIN_ID));
+    private static final List<Long> hasValue = new ArrayList<>(Arrays.asList(EXPANSE_ID));
     // for reset built-in network
     private static final LongSparseArray<NetworkInfo> builtinNetworkMap = new LongSparseArray<NetworkInfo>() {
         {

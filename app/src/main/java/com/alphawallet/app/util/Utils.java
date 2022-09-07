@@ -3,6 +3,7 @@ package com.alphawallet.app.util;
 import static com.alphawallet.ethereum.EthereumNetworkBase.AVALANCHE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.BINANCE_MAIN_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.CLASSIC_ID;
+import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MATIC_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.OPTIMISTIC_MAIN_ID;
@@ -76,6 +77,7 @@ public class Utils {
     private static final String TOKEN_LOGO = "/logo.png";
     public  static final String ALPHAWALLET_REPO_NAME = "https://raw.githubusercontent.com/alphawallet/iconassets/lowercased/";
     private static final String TRUST_ICON_REPO_BASE = "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/";
+    private static final String EGGSWAP_ICON_REPO_BASE = "https://raw.githubusercontent.com/eggswap/exp-token-list/main/icon/";
     private static final String TRUST_ICON_REPO = TRUST_ICON_REPO_BASE + CHAIN_REPO_ADDRESS_TOKEN + "/assets/" + ICON_REPO_ADDRESS_TOKEN + TOKEN_LOGO;
     private static final String ALPHAWALLET_ICON_REPO = ALPHAWALLET_REPO_NAME + ICON_REPO_ADDRESS_TOKEN + TOKEN_LOGO;
 
@@ -787,9 +789,15 @@ public class Utils {
     public static String getTWTokenImageUrl(long chainId, String address)
     {
         String tURL = TRUST_ICON_REPO;
-        String repoChain = twChainNames.get(chainId);
-        if (repoChain == null) repoChain = "ethereum";
-        tURL = tURL.replace(ICON_REPO_ADDRESS_TOKEN, Keys.toChecksumAddress(address)).replace(CHAIN_REPO_ADDRESS_TOKEN, repoChain);
+
+        if (chainId == EXPANSE_ID) {
+            tURL = EGGSWAP_ICON_REPO_BASE + address + ".png";
+        } else {
+            String repoChain = twChainNames.get(chainId);
+            if (repoChain == null) repoChain = "ethereum";
+            tURL = tURL.replace(ICON_REPO_ADDRESS_TOKEN, Keys.toChecksumAddress(address)).replace(CHAIN_REPO_ADDRESS_TOKEN, repoChain);
+        }
+
         return tURL;
     }
 

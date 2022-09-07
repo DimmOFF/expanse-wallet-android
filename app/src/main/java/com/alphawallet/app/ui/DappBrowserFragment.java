@@ -587,7 +587,7 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
 
     private void openNetworkSelection()
     {
-        // Disable because it is only Expanse network is available
+        // EXPANSE: Disable because it is only Expanse network is available
 //        Intent intent = new Intent(getContext(), SelectNetworkActivity.class);
 //        intent.putExtra(C.EXTRA_SINGLE_ITEM, true);
 //        if (activeNetwork != null) intent.putExtra(C.EXTRA_CHAIN_ID, activeNetwork.chainId);

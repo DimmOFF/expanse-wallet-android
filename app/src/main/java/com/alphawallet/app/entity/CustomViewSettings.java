@@ -1,26 +1,21 @@
 package com.alphawallet.app.entity;
 
-import android.content.Context;
-
 import com.alphawallet.app.C;
 import com.alphawallet.app.entity.tokens.Token;
 import com.alphawallet.app.entity.tokens.TokenCardMeta;
 import com.alphawallet.app.entity.tokens.TokenInfo;
-import com.alphawallet.app.repository.entity.RealmToken;
-import com.alphawallet.app.service.TokensService;
-import com.alphawallet.app.ui.widget.entity.NetworkItem;
 import com.alphawallet.ethereum.EthereumNetworkBase;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
+import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 
 public class CustomViewSettings
 {
-    public static final long primaryChain = MAINNET_ID;
-    private static final String primaryChainName = C.ETHEREUM_NETWORK_NAME;
+    public static final long primaryChain = EXPANSE_ID;
+    private static final String primaryChainName = C.EXPANSE_NETWORK_NAME;
 
     //You can use the settings in this file to customise the wallet appearance
 
@@ -41,6 +36,7 @@ public class CustomViewSettings
     //If blank, enable the user filter select dialog, if there are any entries here, the select network dialog is disabled
     //Note: you should always enable the chainId corresponding to the chainIDs in the lockedTokens.
     private static final List<Long> lockedChains = Arrays.asList(
+            EthereumNetworkBase.EXPANSE_ID
             //EthereumNetworkBase.MAINNET_ID //EG only show Main, xdai, classic and two testnets. Don't allow user to select any others
             //EthereumNetworkBase.XDAI_ID,
             //EthereumNetworkBase.RINKEBY_ID, //You can mix testnets and mainnets, but probably shouldn't as it may result in people getting scammed
@@ -48,7 +44,7 @@ public class CustomViewSettings
     );
 
     public static final List<Long> alwaysVisibleChains = Arrays.asList(
-            EthereumNetworkBase.MAINNET_ID
+            EthereumNetworkBase.EXPANSE_ID
     );
 
     public static boolean alwaysShow(long chainId)
@@ -122,7 +118,7 @@ public class CustomViewSettings
     //Hides the filter tab bar at the top of the wallet screen (ALL/CURRENCY/COLLECTIBLES)
     public static boolean hideTabBar()
     {
-        return false;
+        return true;
     }
 
     //Use to switch off direct transfer, only use magiclink transfer
@@ -152,7 +148,7 @@ public class CustomViewSettings
     public static boolean showManageTokens() { return true; }
 
     //Show all networks in Select Network screen. Set to `true` to show only filtered networks.
-    public static boolean showAllNetworks() { return false; }
+    public static boolean showAllNetworks() { return true; }
 
     public static String getDecimalFormat() { return "0.####E0"; }
 
