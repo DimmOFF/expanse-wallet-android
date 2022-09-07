@@ -92,7 +92,6 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
     static Map<Long, NetworkInfo> networkMap = new LinkedHashMap<Long, NetworkInfo>() {
         {
             put(EXPANSE_ID, new NetworkInfo("Expanse", "EXP", EXPANSE_RPC_URL,"http://expanscout.com/tx/", EXPANSE_ID, false));
-            /*
             put(MAINNET_ID, new NetworkInfo("Ethereum", "ETH", MAINNET_RPC_URL, "https://etherscan.io/tx/", MAINNET_ID, false));
             put(CLASSIC_ID, new NetworkInfo("Ethereum Classic", "ETC", CLASSIC_RPC_URL, "https://blockscout.com/etc/mainnet/tx/",
                     CLASSIC_ID, false));
@@ -166,7 +165,6 @@ public abstract class EthereumNetworkBase { // implements EthereumNetworkReposit
                     MILKOMEDA_C1_TEST_ID, false));
             put(PHI_NETWORK_MAIN_ID, new NetworkInfo("PHI", "\u03d5", PHI_MAIN_RPC_URL, "https://explorer.phi.network/tx/",
                     PHI_NETWORK_MAIN_ID, false));
-            */
         }
     };
 

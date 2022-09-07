@@ -2,5 +2,6 @@
   {"name": "EggSwap Farm", "description": "Expanse DeFi app. Farm", "url": "https://eggs.cool", "category": "Finance"},
   {"name": "EggSwap Exchange", "description": "Expanse DeFi app. Exchange", "url": "https://eggs.cool/ex/", "category": "Exchange"},
   {"name": "Menta", "description": "Expanse NFT Service", "url": "https://menta.uno", "category": "NFT"},
-  {"name": "ExpanseCash Farm", "description": "ExpanseCash DeFi app. Farm", "url": "https://farm.expansecash.network", "category": "Finance"}
+  {"name": "ExpanseCash Farm", "description": "ExpanseCash DeFi app. Farm", "url": "https://farm.expansecash.network", "category": "Finance"},
+  {"name": "hamQx", "description": "The decentralized telemetry message queue", "url": "https://hamqx.surge.sh/", "category": "Tool"}
 ]

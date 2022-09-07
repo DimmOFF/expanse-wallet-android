@@ -8,6 +8,7 @@ import static com.alphawallet.ethereum.EthereumNetworkBase.AVALANCHE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.BINANCE_MAIN_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.CLASSIC_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.CRONOS_MAIN_ID;
+import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.FANTOM_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.HECO_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.IOTEX_MAINNET_ID;
@@ -694,6 +695,7 @@ public class TickerService
     // Update this list from here: https://api.coingecko.com/api/v3/asset_platforms
     public static final Map<Long, String> coinGeckoChainIdToAPIName = new HashMap<Long, String>(){{
         put(MAINNET_ID, "ethereum");
+        put(EXPANSE_ID, "expanse");
         put(XDAI_ID, "xdai");
         put(BINANCE_MAIN_ID, "binance-smart-chain");
         put(MATIC_ID, "polygon-pos");
@@ -729,6 +731,7 @@ public class TickerService
     // Update from https://api.coingecko.com/api/v3/coins/list
     public static final Map<Long, String> chainPairs = new HashMap<Long, String>(){{
         put(MAINNET_ID, "ethereum");
+        put(EXPANSE_ID, "expanse");
         put(CLASSIC_ID, "ethereum-classic");
         put(POA_ID, "poa-network");
         put(XDAI_ID, "xdai");

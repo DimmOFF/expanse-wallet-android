@@ -67,13 +67,13 @@ public class SharedPreferenceRepository implements PreferenceRepositoryType {
         long selectedNetwork;
         try
         {
-            selectedNetwork = pref.getLong(DEFAULT_NETWORK_NAME_KEY, 0);
+            selectedNetwork = pref.getLong(DEFAULT_NETWORK_NAME_KEY, 2);
         }
         catch (ClassCastException e) //previously we used Integer or String
         {
             try
             {
-                selectedNetwork = pref.getInt(DEFAULT_NETWORK_NAME_KEY, 0);
+                selectedNetwork = pref.getInt(DEFAULT_NETWORK_NAME_KEY, 2);
             }
             catch (ClassCastException string)
             {

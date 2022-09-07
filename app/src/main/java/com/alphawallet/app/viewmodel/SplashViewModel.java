@@ -1,6 +1,7 @@
 package com.alphawallet.app.viewmodel;
 
 import static com.alphawallet.app.entity.tokenscript.TokenscriptFunction.ZERO_ADDRESS;
+import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 
 import android.app.Activity;
@@ -147,7 +148,7 @@ public class SplashViewModel extends ViewModel
 
     public void setDefaultBrowser()
     {
-        preferenceRepository.setActiveBrowserNetwork(MAINNET_ID);
+        preferenceRepository.setActiveBrowserNetwork(EXPANSE_ID);
     }
 
     public long getInstallTime() {

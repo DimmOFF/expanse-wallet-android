@@ -12,13 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
-import static com.alphawallet.ethereum.EthereumNetworkBase.MATIC_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.XDAI_ID;
 
 public class EthereumNetworkRepository extends EthereumNetworkBase
