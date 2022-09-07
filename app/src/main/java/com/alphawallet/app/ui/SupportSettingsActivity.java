@@ -47,6 +47,7 @@ public class SupportSettingsActivity extends BaseActivity {
     }
 
     private void initializeSettings() {
+        /*
         telegram = new SettingsItemView.Builder(this)
                 .withIcon(R.drawable.ic_logo_telegram)
                 .withTitle(R.string.telegram)
@@ -71,7 +72,7 @@ public class SupportSettingsActivity extends BaseActivity {
                 .withListener(this::onTwitterClicked)
                 .build();
 
-        /*reddit = new SettingsItemView.Builder(this)
+        reddit = new SettingsItemView.Builder(this)
                 .withIcon(R.drawable.ic_logo_reddit)
                 .withTitle(R.string.reddit)
                 .withListener(this::onRedditClicked)
@@ -104,37 +105,39 @@ public class SupportSettingsActivity extends BaseActivity {
 
     private void addSettingsToLayout() {
         supportSettingsLayout = findViewById(R.id.layout);
-        if (MediaLinks.AWALLET_TELEGRAM_URL != null) {
+
+        if (MediaLinks.AWALLET_TELEGRAM_URL != null && telegram != null) {
             supportSettingsLayout.addView(telegram);
         }
 
-        if (MediaLinks.AWALLET_DISCORD_URL != null){
+        if (MediaLinks.AWALLET_DISCORD_URL != null && discord != null){
             supportSettingsLayout.addView(discord);
         }
 
-        if (MediaLinks.AWALLET_EMAIL1 != null) {
+        if (MediaLinks.AWALLET_EMAIL1 != null && email != null) {
             supportSettingsLayout.addView(email);
         }
 
-        if (MediaLinks.AWALLET_TWITTER_URL != null) {
+        if (MediaLinks.AWALLET_TWITTER_URL != null && twitter != null) {
             supportSettingsLayout.addView(twitter);
         }
 
-        if (MediaLinks.AWALLET_GITHUB != null) {
-            supportSettingsLayout.addView(github);
-        }
-
-        /*if (MediaLinks.AWALLET_REDDIT_URL != null) {
+        if (MediaLinks.AWALLET_REDDIT_URL != null && reddit != null) {
             supportSettingsLayout.addView(reddit);
         }
 
-        if (MediaLinks.AWALLET_FACEBOOK_URL != null) {
+        if (MediaLinks.AWALLET_FACEBOOK_URL != null && facebook != null) {
             supportSettingsLayout.addView(facebook);
         }
 
-        if (MediaLinks.AWALLET_BLOG_URL != null) {
+        if (MediaLinks.AWALLET_BLOG_URL != null && blog != null) {
             supportSettingsLayout.addView(blog);
-        }*/
+        }
+
+        if (MediaLinks.AWALLET_GITHUB != null && github != null) {
+            supportSettingsLayout.addView(github);
+        }
+
         supportSettingsLayout.addView(faq);
     }
 

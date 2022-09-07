@@ -529,7 +529,6 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     public void tryToShowEmailPrompt(Context context, View successOverlay, Handler handler, Runnable onSuccessRunnable) {
-        /* Turn off prompting email
         if (preferenceRepository.getLaunchCount() == 4) {
             EmailPromptView emailPromptView = new EmailPromptView(context, successOverlay, handler, onSuccessRunnable);
             BottomSheetDialog emailPromptDialog = new BottomSheetDialog(context);
@@ -541,7 +540,7 @@ public class HomeViewModel extends BaseViewModel {
             emailPromptDialog.setOnShowListener(dialog -> behavior.setPeekHeight(emailPromptView.getHeight()));
             emailPromptDialog.show();
         }
-         */
+
     }
 
     public void tryToShowWhatsNewDialog(Context context) {
@@ -555,7 +554,7 @@ public class HomeViewModel extends BaseViewModel {
                 // load what's new
                 Request request = new Request.Builder()
                         .header("Accept", "application/vnd.github.v3+json")
-                        .url("https://api.github.com/repos/alphawallet/alpha-wallet-android/releases")
+                        .url("https://api.github.com/repos/dimmoff/expanse-wallet-android/releases")
                         .get()
                         .build();
 
