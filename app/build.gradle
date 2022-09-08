@@ -94,6 +94,7 @@ android {
         targetSdkVersion 32
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments clearPackageData: 'true'
+        archivesBaseName = "expwallet-ver.$versionName.$versionCode"
 
         //These keys are not used for Expanse
         def XInfuraAPI = "XInfuraAPI"
@@ -158,11 +159,13 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
+            versionNameSuffix "-debug"
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'),
 //                    'proguard-rules.pro'
         }
         release {
             minifyEnabled false
+            versionNameSuffix "-release"
             if (signingConfigs.release.storeFile) {
                 signingConfig signingConfigs.release
             }
