@@ -1,5 +1,3 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/AlphaWallet/alpha-wallet-android)
-
 # ExpanseWallet - modern and secure mobile wallet for Expanse blockchain.
 
 Expanse Wallet is a modern and secure mobile wallet, that has been built on top of [AlphaWallet](https://github.com/AlphaWallet/alpha-wallet-android) project to provide easy access to your Expanse's assets.
