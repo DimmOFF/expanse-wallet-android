@@ -274,8 +274,8 @@ public class HistoryChart extends View
         canvas.drawPath(path, paint);
 
         // add min/max values to chart
-        canvas.drawText(String.format("%.02f", datasource.minValue()), width - TEXT_MARGIN, height, edgeValPaint);
-        canvas.drawText(String.format("%.02f", datasource.maxValue()), width - TEXT_MARGIN, 0.05f * height, edgeValPaint);
+        canvas.drawText(String.format("%.03f", datasource.minValue()), width - TEXT_MARGIN, height, edgeValPaint);
+        canvas.drawText(String.format("%.03f", datasource.maxValue()), width - TEXT_MARGIN, 0.05f * height, edgeValPaint);
     }
 
     public void fetchHistory(Token token, final Range range)

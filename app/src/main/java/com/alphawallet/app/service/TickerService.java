@@ -730,23 +730,7 @@ public class TickerService
 
     // Update from https://api.coingecko.com/api/v3/coins/list
     public static final Map<Long, String> chainPairs = new HashMap<Long, String>(){{
-        put(MAINNET_ID, "ethereum");
         put(EXPANSE_ID, "expanse");
-        put(CLASSIC_ID, "ethereum-classic");
-        put(POA_ID, "poa-network");
-        put(XDAI_ID, "xdai");
-        put(BINANCE_MAIN_ID, "binancecoin");
-        put(HECO_ID, "huobi-token");
-        put(AVALANCHE_ID, "avalanche-2");
-        put(FANTOM_ID, "fantom");
-        put(MATIC_ID, "matic-network");
-        put(ARBITRUM_MAIN_ID, "ethereum");
-        put(OPTIMISTIC_MAIN_ID, "ethereum");
-        put(KLAYTN_ID, "klay-token");
-        put(IOTEX_MAINNET_ID, "iotex");
-        put(AURORA_MAINNET_ID, "aurora");
-        put(MILKOMEDA_C1_ID, "cardano");
-        put(CRONOS_MAIN_ID, "crypto-com-chain");
     }};
 
     public static boolean validateCoinGeckoAPI(Token token)
