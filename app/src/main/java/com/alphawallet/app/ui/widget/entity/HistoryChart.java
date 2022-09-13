@@ -3,6 +3,7 @@ package com.alphawallet.app.ui.widget.entity;
 import static com.alphawallet.app.service.TickerService.chainPairs;
 import static com.alphawallet.app.service.TickerService.coinGeckoChainIdToAPIName;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -274,9 +275,21 @@ public class HistoryChart extends View
         canvas.drawPath(path, paint);
 
         // add min/max values to chart
-        canvas.drawText(String.format("%.03f", datasource.minValue()), width - TEXT_MARGIN, height, edgeValPaint);
-        canvas.drawText(String.format("%.03f", datasource.maxValue()), width - TEXT_MARGIN, 0.05f * height, edgeValPaint);
+        canvas.drawText(getFormattedValue(datasource.minValue()), width - TEXT_MARGIN, height, edgeValPaint);
+        canvas.drawText(getFormattedValue(datasource.maxValue()), width - TEXT_MARGIN, 0.05f * height, edgeValPaint);
     }
+
+    @SuppressLint("DefaultLocale")
+    private String getFormattedValue(float value)
+    {
+        if (value < 1)
+        {
+            return String.format("%.03f", value);
+        }
+
+        return String.format("%.02f", value);
+    }
+
 
     public void fetchHistory(Token token, final Range range)
     {

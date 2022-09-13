@@ -20,7 +20,7 @@ public class BalanceUtils
     private static final BigDecimal oneGwei = BigDecimal.ONE.divide(Convert.Unit.GWEI.getWeiFactor(), 18, RoundingMode.DOWN); //BigDecimal.valueOf(0.000000001);
 
     public static final String MACRO_PATTERN = "###,###,###,###,##0";
-    public static final String CURRENCY_PATTERN = MACRO_PATTERN + ".000";
+    public static final String CURRENCY_PATTERN = MACRO_PATTERN + ".00";
     private static final double ONE_BILLION = 1000000000.0;
 
     private static String getDigitalPattern(int precision)
@@ -314,6 +314,11 @@ public class BalanceUtils
             format += "0";
             price /= ONE_BILLION;
             suffix = "B";
+        }
+
+        if (price < 1)
+        {
+            format += "0";
         }
 
         DecimalFormat df = getFormat(format);

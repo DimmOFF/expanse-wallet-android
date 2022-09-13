@@ -245,7 +245,7 @@ public class TokenInfoFragment extends BaseFragment {
         if (!TickerService.validateCoinGeckoAPI(token)) return Single.fromCallable(() -> values);
 
         return Single.fromCallable(() -> {
-
+            double currentPrice = 0;
             String coinGeckotokenId = token.isEthereum() ? chainPairs.get(token.tokenInfo.chainId)
                     : coinGeckoChainIdToAPIName.get(token.tokenInfo.chainId) + "/contract/" + token.getAddress().toLowerCase();
 
@@ -268,7 +268,7 @@ public class TokenInfoFragment extends BaseFragment {
                 long oneMonthTime = System.currentTimeMillis() - 30 * DateUtils.DAY_IN_MILLIS;
 
                 //Add performance stats. This is the variance
-                double currentPrice = getDoubleValue(prices, prices.length() - 1);
+                currentPrice = getDoubleValue(prices, prices.length() - 1);
 
                 BigDecimal correctedBalance = token.getCorrectedBalance(Convert.Unit.ETHER.getFactor());
 
@@ -300,6 +300,26 @@ public class TokenInfoFragment extends BaseFragment {
             catch (Exception e)
             {
                 Timber.e(e);
+            }
+
+            //Coingeco marketcap value == 0, try fetch data from explorer.expanse.tech
+            if (values.get(4) == 0 && token.tokenInfo.symbol.equals(C.EXP_SYMBOL)) {
+                request = new Request.Builder()
+                    .url("https://explorer.expanse.tech/v1/totalSupply")
+                    .get()
+                    .build();
+
+                try (okhttp3.Response response = httpClient.newCall(request)
+                        .execute())
+                {
+                    String result = response.body().string();
+                    JSONObject data = new JSONObject(result).getJSONObject("data");
+                    values.set(4,data.getDouble("totalSupply") * currentPrice);
+                }
+                catch (Exception e)
+                {
+                    Timber.e(e);
+                }
             }
 
             return values;
