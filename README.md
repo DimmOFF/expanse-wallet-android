@@ -54,5 +54,11 @@ To learn more about Expanse, please check our website or join the community:
 - [Telegram](https://t.me/ExpanseTech)
 - [Discord](https://discord.gg/DUN6r2X)
 
+## Donation
+If you like this project, please consider donating a small amount of crypto to the one of the wallets bellow
+- bc1qhjxcwd9z0hhxk2dxm6py773z0v553l2v9v9237 - Bitcoin
+- 0xcDf27FE9C5e656Fd992a54367221e76840342c2c - ETH, USDT(ERC20), EXP
+- TEpPey3TKXbeTK1FUMgmH4CuQjwGn7QhAj - USDT(TRC20)
+
 ## License
 ExpanseWallet Android is available under the [MIT license](https://github.com/DimmOFF/expanse-wallet-android/blob/master/LICENSE). Free for commercial and non-commercial use.
