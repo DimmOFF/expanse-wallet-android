@@ -316,6 +316,11 @@ public class BalanceUtils
             suffix = "B";
         }
 
+        if (price < 1)
+        {
+            format += "0";
+        }
+
         DecimalFormat df = getFormat(format);
         df.setRoundingMode(RoundingMode.CEILING);
         if (price >= 0) {
