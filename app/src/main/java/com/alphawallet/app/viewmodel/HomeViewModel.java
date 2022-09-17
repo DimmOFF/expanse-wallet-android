@@ -26,6 +26,7 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.alphawallet.app.BuildConfig;
 import com.alphawallet.app.C;
 import com.alphawallet.app.R;
 import com.alphawallet.app.entity.AnalyticsProperties;
@@ -550,7 +551,7 @@ public class HomeViewModel extends BaseViewModel {
                     .getPackageInfo(context.getPackageName(), 0);
 
             int versionCode = packageInfo.versionCode;
-            if (preferenceRepository.getLastVersionCode(versionCode) < versionCode) {
+            if (preferenceRepository.getLastVersionCode(versionCode) < versionCode && !BuildConfig.DEBUG) {
                 // load what's new
                 Request request = new Request.Builder()
                         .header("Accept", "application/vnd.github.v3+json")
