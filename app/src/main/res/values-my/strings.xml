@@ -744,7 +744,8 @@
     <string name="calc_gas_limit">ခွင့်ပြုလုပ်ငန်းဆောင်ရွက်ခကိုတွက်ချက်ခြင်း</string>
     <string name="wallet_address">ဝေါလက်လိပ်စာ</string>
     <string name="transaction_in_progress">လုပ်ငန်းစဥ်ကိုဆောင်ရွက်နေပါပြီ</string>
-    <string name="transaction_progress_detail">လုပ်ငန်းစဥ်ကို Ethereum Blockchain ပေါ်သို့တင်ပြီးပြီပါပြီ။ အတည်ပြုသူများမှအတည်ပြုနေသည့်အတွက် မိနစ်အနည်းအငယ်ခန့်ကြာမြင့်နိုင်ပါသည်။</string>
+    <string name="transaction_progress_detail">
+လုပ်ငန်းစဥ်ကို Expanse Blockchain ပေါ်သို့တင်ပြီးပြီပါပြီ။ အတည်ပြုသူများမှအတည်ပြုနေသည့်အတွက် မိနစ်အနည်းအငယ်ခန့်ကြာမြင့်နိုင်ပါသည်။</string>
     <string name="action_show_tx_details">လုပ်ငန်းစဥ်အသေးစိတ်ကိုဖော်ပြမည်</string>
     <string name="default_to">%1$s %2$s တို့သည် %3$sကိုပို့ပြီးပါပြီ</string>
     <string name="default_from">%1$s နှင့် %2$s တို့သည် %3$sမှ လက်ခံရရှိပြီးပါပြီ</string>

@@ -744,7 +744,8 @@
     <string name="calc_gas_limit">Calculating Gas Limit</string>
     <string name="wallet_address">Wallet Address</string>
     <string name="transaction_in_progress">Transaction in Progress</string>
-    <string name="transaction_progress_detail">The transaction is sent to the Ethereum blockchain. It might take few minutes to be confirmed by miners.</string>
+    <string name="transaction_progress_detail">
+The transaction is sent to the Expanse blockchain. It might take few minutes to be confirmed by miners.</string>
     <string name="action_show_tx_details">Show Transaction Details</string>
     <string name="default_to">Sent %1$s %2$s to %3$s</string>
     <string name="default_from">Received %1$s %2$s from %3$s</string>
