@@ -101,7 +101,18 @@
   [
     {"address": "0x331631B4bb93b9B8962faE15860BD538a389395A", "name": "WEXP", "isPopular": true, "network": 2},
     {"address": "0xd1365a5Af713cde10C6ac3fB9EDBB2bBbd4B2Ba2", "name": "EGG", "isPopular": true, "network": 2},
-    {"address": "0x9D2761A714b5b2EfA325a8a3eee21BE32AACeB4A", "name": "LOVE", "isPopular": true, "network": 2}
+    {"address": "0x9D2761A714b5b2EfA325a8a3eee21BE32AACeB4A", "name": "LOVE", "isPopular": true, "network": 2},
+    {"address": "0x0A5B3BE530e9Ca3158b84Ab339a3403d7E44c45f", "name": "STEAK", "isPopular": true, "network": 2},
+    {"address": "0x87Eb2fdF607B46F324984771FfDF2A0396139bDf", "name": "PROMINEROS", "isPopular": true, "network": 2},
+    {"address": "0x0D14F385647E66283E8E5D9c567296751Ac7ee7D", "name": "WAGMI", "isPopular": true, "network": 2},
+    {"address": "0xeCAEa0babbB715357D68337CE2e8a7A2Aa53034F", "name": "XatruchCoin", "isPopular": true, "network": 2},
+    {"address": "0x9C4A1B65aBFa24f0F743FD544EB15a70A8d2e27F", "name": "T502", "isPopular": true, "network": 2},
+    {"address": "0x71c6a1ae78259f9E74cD4FaA3F96CFD06d9E1616", "name": "EXPANSECASH", "isPopular": true, "network": 2},
+    {"address": "0x4e004A1031f79001dC21194F0EC3bF1A3a208Fb9", "name": "KundaliniCoin", "isPopular": true, "network": 2},
+    {"address": "0x3B4Cfcc4532EEC161860cB6544f49947544d940d", "name": "Tokenlab", "isPopular": true, "network": 2},
+    {"address": "0x4F5ec5A69DBE12C48cA1edC9c52b1E8896Aed932", "name": "EXPEX", "isPopular": true, "network": 2},
+    {"address": "0x29a828f7D34769Ae5d788BBbe505fA5B2AbADF06", "name": "GXP", "isPopular": true, "network": 2},
+    {"address": "0x340a5b4e42b38462e2ce090c083bf812af0ac2a7", "name": "RICH", "isPopular": true, "network": 2}
   ],
 "xDAI":
   [
