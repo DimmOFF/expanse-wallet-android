@@ -87,7 +87,7 @@ android {
 
     defaultConfig {
         versionCode code
-        versionName "0.9.2"
+        versionName "0.9.3"
 
         applicationId "com.dmflabs.expwallet"
         minSdkVersion 23
