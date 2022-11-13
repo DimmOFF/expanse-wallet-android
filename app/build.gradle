@@ -96,7 +96,6 @@ android {
         testInstrumentationRunnerArguments clearPackageData: 'true'
         archivesBaseName = "expwallet-ver.$versionName.$versionCode"
 
-        //These keys are not used for Expanse
         def XInfuraAPI = "XInfuraAPI"
         //Put your Infura key here, NB with over 30 - 40 users this API key will rate limit, it's only here for bootstrapping a free build
         def DEFAULT_INFURA_API_KEY = "\"...\""
@@ -104,8 +103,15 @@ android {
         def DEFAULT_POLYGONSCAN_API_KEY = "\"...\""; //Put your Polygonscan developer API key in here to get access to Polygon/Mumbai token discovery and transactions
         def DEFAULT_AURORA_API_KEY = "\"...\""; //Put your Aurorascan.dev API key here - this one will rate limit as it is common
 
+        def keysSecretFile = file('/../keys.secret')
+        if (keysSecretFile.canRead()) {
+            def Properties secretProps = new Properties()
+            secretProps.load(new FileInputStream(keysSecretFile))
+            DEFAULT_INFURA_API_KEY = "\"" + secretProps['INFURA_API_KEY'] + "\""
+        }
+
         buildConfigField 'int', 'DB_VERSION', '45'
-        //buildConfigField "String", XInfuraAPI, DEFAULT_INFURA_API_KEY
+        buildConfigField "String", XInfuraAPI, DEFAULT_INFURA_API_KEY
 
         ndk {
             abiFilters "armeabi-v7a", "x86", "x86_64", "arm64-v8a"
@@ -119,7 +125,7 @@ android {
 
         externalNativeBuild {
             cmake {
-               // cFlags "-DIFKEY=\\\"" + DEFAULT_INFURA_API_KEY + "\\\""
+                cFlags "-DIFKEY=\\\"" + DEFAULT_INFURA_API_KEY + "\\\""
                // cFlags "-DOSKEY=\\\"" + DEFAULT_OPENSEA_API_KEY + "\\\""
                // cFlags "-DPSKEY=\\\"" + DEFAULT_POLYGONSCAN_API_KEY + "\\\""
               //  cFlags "-DASKEY=\\\"" + DEFAULT_AURORA_API_KEY + "\\\""

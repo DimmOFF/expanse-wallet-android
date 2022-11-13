@@ -113,7 +113,7 @@ public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryTy
     public static native String getSecondaryInfuraKey();
     private static final boolean usesProductionKey = !getInfuraKey().equals(DEFAULT_INFURA_KEY);
 
-    public static final String FREE_MAINNET_RPC_URL = "https://main-rpc.linkpool.io";
+    public static final String FREE_MAINNET_RPC_URL = "https://rpc.ankr.com/eth";
     public static final String FREE_EXPANSE_RPC_URL = "https://node.eggs.cool/rpc";
     public static final String FREE_POLYGON_RPC_URL = "https://polygon-rpc.com";
     public static final String FREE_ARBITRUM_RPC_URL = "https://arbitrum.public-rpc.com";
