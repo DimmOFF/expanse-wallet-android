@@ -162,11 +162,16 @@ public class ImportWalletViewModel extends BaseViewModel implements OnSetWatchWa
     {
         return Single.fromCallable(() -> {
             boolean isValid = false;
-            ObjectMapper objectMapper = new ObjectMapper();
-            WalletFile walletFile = objectMapper.readValue(keystore, WalletFile.class);
-            ECKeyPair kp = org.web3j.crypto.Wallet.decrypt(password, walletFile);
-            String address = Numeric.prependHexPrefix(Keys.getAddress(kp));
-            if (address.equalsIgnoreCase(keystoreAddress)) isValid = true;
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                WalletFile walletFile = objectMapper.readValue(keystore, WalletFile.class);
+                ECKeyPair kp = org.web3j.crypto.Wallet.decrypt(password, walletFile);
+                String address = Numeric.prependHexPrefix(Keys.getAddress(kp));
+                if (address.equalsIgnoreCase(keystoreAddress)) isValid = true;
+            } catch (Throwable ex) {
+                Timber.e(ex);
+            }
+
             return isValid;
         });
     }
