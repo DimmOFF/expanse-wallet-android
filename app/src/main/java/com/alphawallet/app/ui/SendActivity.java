@@ -3,6 +3,7 @@ package com.alphawallet.app.ui;
 import static com.alphawallet.app.C.Key.WALLET;
 import static com.alphawallet.app.widget.AWalletAlertDialog.ERROR;
 import static com.alphawallet.app.widget.AWalletAlertDialog.WARNING;
+import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
 import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 
 import android.app.Activity;
@@ -106,7 +107,7 @@ public class SendActivity extends BaseActivity implements AmountReadyCallback, S
                 .get(SendViewModel.class);
 
         String contractAddress = getIntent().getStringExtra(C.EXTRA_CONTRACT_ADDRESS);
-        long currentChain = getIntent().getLongExtra(C.EXTRA_NETWORKID, MAINNET_ID);
+        long currentChain = getIntent().getLongExtra(C.EXTRA_NETWORKID, EXPANSE_ID);
         wallet = getIntent().getParcelableExtra(WALLET);
         token = viewModel.getToken(currentChain, getIntent().getStringExtra(C.EXTRA_ADDRESS));
         QRResult result = getIntent().getParcelableExtra(C.EXTRA_AMOUNT);

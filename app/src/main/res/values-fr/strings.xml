@@ -332,7 +332,7 @@
     <string name="action_save">Sauvegarder</string>
     <string name="action_contract_info">Info du contrat</string>
     <string name="contract_address">Adressee du contrat</string>
-    <string name="input_address">Adressee Ethereum ou nom ENS</string>
+    <string name="input_address">Adressee Expanse ou nom ENS</string>
     <string name="ens_name">Nom ENS</string>
     <string name="enter_ens">Votre nom ENS</string>
     <string name="ticket_range_expired">Lien Magique Expiré</string>

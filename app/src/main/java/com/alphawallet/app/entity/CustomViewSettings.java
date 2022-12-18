@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.alphawallet.ethereum.EthereumNetworkBase.EXPANSE_ID;
-import static com.alphawallet.ethereum.EthereumNetworkBase.MAINNET_ID;
 
 public class CustomViewSettings
 {

@@ -335,7 +335,7 @@
     <string name="action_save">Lưu lại</string>
     <string name="action_contract_info">Thông tin hợp đồng</string>
     <string name="contract_address">Địa chỉ hợp đồng</string>
-    <string name="input_address">Địa chỉ Ethereum hoặc tên ENS</string>
+    <string name="input_address">Địa chỉ Expanse hoặc tên ENS</string>
     <string name="ens_name">Ethereum Name Serice (ENS) </string>
     <string name="enter_ens">Tên ENS của bạn</string>
     <string name="ticket_range_expired">Magiclink Expired</string>

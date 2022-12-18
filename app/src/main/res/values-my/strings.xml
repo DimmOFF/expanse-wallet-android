@@ -342,7 +342,7 @@
     <string name="action_save">သိမ်းဆည်းမည်</string>
     <string name="action_contract_info">စာချုပ်အချက်အလက်</string>
     <string name="contract_address">စာချုပ်လိပ်စာ</string>
-    <string name="input_address">Ethereum လိပ်စာ (သို့) ENS နာမည်</string>
+    <string name="input_address">Expanse လိပ်စာ (သို့) ENS နာမည်</string>
     <string name="ens_name">ENS နာမည်</string>
     <string name="enter_ens">သင်၏ ENS နာမည်</string>
     <string name="ticket_range_expired">Magiclink သက်တမ်းကုန်ဆုံးနေပါသည်</string>
