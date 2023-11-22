@@ -64,8 +64,6 @@ repositories {
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion '32.0.0'
     sourceSets {
         main {
 
@@ -87,11 +85,12 @@ android {
 
     defaultConfig {
         versionCode code
-        versionName "0.9.4"
+        versionName "0.9.5"
 
         applicationId "com.dmflabs.expwallet"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
+        compileSdk 33
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments clearPackageData: 'true'
         archivesBaseName = "expwallet-ver.$versionName.$versionCode"
