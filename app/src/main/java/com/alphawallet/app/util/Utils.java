@@ -825,7 +825,7 @@ public class Utils {
         }
         else if (URL.startsWith(IPFS_PREFIX))
         {
-            parsed = "https://gateway.ipfs.io/ipfs/" + URL.substring(IPFS_PREFIX.length());
+            parsed = "https://nftstorage.link/ipfs/" + URL.substring(IPFS_PREFIX.length());
         }
 
         return parsed;

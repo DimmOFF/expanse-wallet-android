@@ -112,7 +112,10 @@
     {"address": "0x3B4Cfcc4532EEC161860cB6544f49947544d940d", "name": "Tokenlab", "isPopular": true, "network": 2},
     {"address": "0x4F5ec5A69DBE12C48cA1edC9c52b1E8896Aed932", "name": "EXPEX", "isPopular": true, "network": 2},
     {"address": "0x29a828f7D34769Ae5d788BBbe505fA5B2AbADF06", "name": "GXP", "isPopular": true, "network": 2},
-    {"address": "0x340a5b4e42b38462e2ce090c083bf812af0ac2a7", "name": "RICH", "isPopular": true, "network": 2}
+    {"address": "0x340a5b4e42b38462e2ce090c083bf812af0ac2a7", "name": "RICH", "isPopular": true, "network": 2},
+    {"address": "0x8b3fdf353b13ce93d5a788daa869ff7dbc91daae", "name": "RoomHouseToken", "isPopular": true, "network": 2},
+    {"address": "0xf16e3a9a4e7c28154014b87e172fe4b1f509fbeb", "name": "EastToken", "isPopular": true, "network": 2},
+    {"address": "0xa5ede1ae8ea7bf67415e9082a8adc3581e9e7042", "name": "EXPUNKS", "isPopular": true, "network": 2}
   ],
 "xDAI":
   [
