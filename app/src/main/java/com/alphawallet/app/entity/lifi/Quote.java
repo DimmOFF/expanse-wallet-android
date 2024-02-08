@@ -55,11 +55,11 @@ public class Quote
 
         @SerializedName("fromToken")
         @Expose
-        public Connection.LToken fromToken;
+        public Token fromToken;
 
         @SerializedName("toToken")
         @Expose
-        public Connection.LToken toToken;
+        public Token toToken;
 
         @SerializedName("fromAmount")
         @Expose

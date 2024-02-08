@@ -2,6 +2,8 @@ package com.alphawallet.app.ui;
 
 
 import static android.app.Activity.RESULT_OK;
+import static com.alphawallet.app.C.SIGNAL_NFT_SYNC;
+import static com.alphawallet.app.C.SYNC_STATUS;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -172,6 +174,15 @@ public class NFTAssetsFragment extends BaseFragment implements OnAssetClickListe
         }
 
         recyclerView.setAdapter(adapter);
+        checkSyncStatus();
+    }
+
+    private void checkSyncStatus()
+    {
+        if (token == null || token.getTokenAssets() == null) return;
+        Bundle result = new Bundle();
+        result.putBoolean(SYNC_STATUS, token.getTokenCount() != token.getTokenAssets().size());
+        getParentFragmentManager().setFragmentResult(SIGNAL_NFT_SYNC, result);
     }
 
     private boolean hasTokenScriptOverride(Token t)

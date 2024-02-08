@@ -13,7 +13,7 @@ import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.entity.lifi.Chain;
 import com.alphawallet.app.entity.lifi.Connection;
 import com.alphawallet.app.entity.lifi.Quote;
-import com.alphawallet.app.entity.tokens.Token;
+import com.alphawallet.app.entity.lifi.Token;
 import com.alphawallet.app.interact.CreateTransactionInteract;
 import com.alphawallet.app.service.AssetDefinitionService;
 import com.alphawallet.app.service.KeyService;
@@ -164,7 +164,7 @@ public class SwapViewModel extends BaseViewModel
                 .subscribe(this::onConnections, this::onConnectionsError);
     }
 
-    public void getQuote(Connection.LToken source, Connection.LToken dest, String address, String amount, String slippage)
+    public void getQuote(Token source, Token dest, String address, String amount, String slippage)
     {
         if (hasEnoughBalance(source, amount))
         {
@@ -197,7 +197,7 @@ public class SwapViewModel extends BaseViewModel
         postError(C.ErrorCode.SWAP_QUOTE_ERROR, Objects.requireNonNull(t.getMessage()));
     }
 
-    public boolean hasEnoughBalance(Connection.LToken source, String amount)
+    public boolean hasEnoughBalance(Token source, String amount)
     {
         BigDecimal bal = new BigDecimal(getBalance(source));
         BigDecimal reqAmount = new BigDecimal(amount);
@@ -308,9 +308,9 @@ public class SwapViewModel extends BaseViewModel
                 && result.contains("tool");
     }
 
-    public String getBalance(Connection.LToken token)
+    public String getBalance(Token token)
     {
-        Token t;
+        com.alphawallet.app.entity.tokens.Token t;
         if (token.isNativeToken())
         {
             t = tokensService.getServiceToken(token.chainId);

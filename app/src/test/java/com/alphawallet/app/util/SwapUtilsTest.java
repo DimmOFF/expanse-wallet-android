@@ -5,6 +5,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 import com.alphawallet.app.entity.lifi.Connection;
 import com.alphawallet.app.entity.lifi.Quote;
+import com.alphawallet.app.entity.lifi.Token;
 
 import org.junit.Test;
 
@@ -51,7 +52,7 @@ public class SwapUtilsTest
     {
         Quote quote = new Quote();
         quote.action = new Quote.Action();
-        quote.action.toToken = new Connection.LToken();
+        quote.action.toToken = new Token();
         quote.estimate = new Quote.Estimate();
         quote.estimate.toAmountMin = "1000000";
         quote.action.toToken.decimals = 6;
@@ -65,8 +66,8 @@ public class SwapUtilsTest
     {
         Quote quote = new Quote();
         quote.action = new Quote.Action();
-        quote.action.fromToken = new Connection.LToken();
-        quote.action.toToken = new Connection.LToken();
+        quote.action.fromToken = new Token();
+        quote.action.toToken = new Token();
         quote.action.fromToken.priceUSD = "5";
         quote.action.fromToken.symbol = "ETH";
         quote.action.toToken.priceUSD = "1000";

@@ -69,7 +69,6 @@ import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 import org.web3j.utils.Numeric;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
@@ -89,7 +88,7 @@ public class WalletConnectActivity extends BaseActivity implements ActionSheetCa
     private static final String DEFAULT_IDON = "https://example.walletconnect.org/favicon.ico";
     private static final long CONNECT_TIMEOUT = 10 * DateUtils.SECOND_IN_MILLIS; // 10 Seconds timeout
     private final Handler handler = new Handler(Looper.getMainLooper());
-    private final LocalBroadcastManager broadcastManager;
+    private LocalBroadcastManager broadcastManager;
     private final long switchChainDialogCallbackId = 1;
     WalletConnectViewModel viewModel;
     private WCClient client;
@@ -188,11 +187,6 @@ public class WalletConnectActivity extends BaseActivity implements ActionSheetCa
             }
         }
     };
-
-    public WalletConnectActivity()
-    {
-        broadcastManager = LocalBroadcastManager.getInstance(this);
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -590,6 +584,7 @@ public class WalletConnectActivity extends BaseActivity implements ActionSheetCa
         filter.addAction(C.WALLET_CONNECT_CLIENT_TERMINATE);
         filter.addAction(C.WALLET_CONNECT_SWITCH_CHAIN);
         filter.addAction(C.WALLET_CONNECT_ADD_CHAIN);
+        if (broadcastManager == null) broadcastManager = LocalBroadcastManager.getInstance(this);
         broadcastManager.registerReceiver(walletConnectActionReceiver, filter);
     }
 
@@ -943,8 +938,7 @@ public class WalletConnectActivity extends BaseActivity implements ActionSheetCa
                 confDialog.setCanceledOnTouchOutside(false);
                 confDialog.waitForEstimate();
 
-                viewModel.calculateGasEstimate(viewModel.getWallet(), Numeric.hexStringToByteArray(w3Tx.payload),
-                        chainId, w3Tx.recipient.toString(), new BigDecimal(w3Tx.value), w3Tx.gasLimit)
+                viewModel.calculateGasEstimate(viewModel.getWallet(), w3Tx, chainId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(confDialog::setGasEstimate,

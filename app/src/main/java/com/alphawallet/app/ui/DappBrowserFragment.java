@@ -672,7 +672,7 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
     {
         if (viewModel != null)
         {
-            if (viewModel.getActiveNetwork() == null || activeNetwork.chainId != viewModel.getActiveNetwork().chainId)
+            if (viewModel.getActiveNetwork() == null || activeNetwork == null || activeNetwork.chainId != viewModel.getActiveNetwork().chainId)
             {
                 viewModel.checkForNetworkChanges();
             }
@@ -1387,13 +1387,13 @@ public class DappBrowserFragment extends BaseFragment implements OnSignTransacti
                 confirmationDialog.show();
                 confirmationDialog.fullExpand();
 
-                viewModel.calculateGasEstimate(wallet, Numeric.hexStringToByteArray(transaction.payload),
-                        activeNetwork.chainId, transaction.recipient.toString(), new BigDecimal(transaction.value), transaction.gasLimit)
+                viewModel.calculateGasEstimate(wallet, transaction, activeNetwork.chainId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(estimate -> confirmationDialog.setGasEstimate(estimate),
                                 Throwable::printStackTrace)
                         .isDisposed();
+
 
                 return;
             }

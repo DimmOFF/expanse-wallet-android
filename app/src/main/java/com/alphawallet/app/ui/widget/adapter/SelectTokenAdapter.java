@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alphawallet.app.R;
 import com.alphawallet.app.entity.lifi.Connection;
+import com.alphawallet.app.entity.lifi.Token;
 import com.alphawallet.app.widget.AddressIcon;
 import com.alphawallet.app.widget.SelectTokenDialog;
 import com.google.android.material.radiobutton.MaterialRadioButton;
@@ -21,12 +22,12 @@ import java.util.List;
 
 public class SelectTokenAdapter extends RecyclerView.Adapter<SelectTokenAdapter.ViewHolder>
 {
-    private final List<Connection.LToken> displayData;
+    private final List<Token> displayData;
     private final SelectTokenDialog.SelectTokenDialogEventListener callback;
     private String selectedTokenAddress;
     private final TokenFilter tokenFilter;
 
-    public SelectTokenAdapter(List<Connection.LToken> tokens, SelectTokenDialog.SelectTokenDialogEventListener callback)
+    public SelectTokenAdapter(List<Token> tokens, SelectTokenDialog.SelectTokenDialogEventListener callback)
     {
         tokenFilter = new TokenFilter(tokens);
         this.callback = callback;
@@ -47,7 +48,7 @@ public class SelectTokenAdapter extends RecyclerView.Adapter<SelectTokenAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        Connection.LToken item = displayData.get(position);
+        Token item = displayData.get(position);
         if (item != null)
         {
             holder.name.setText(item.name);
@@ -80,7 +81,7 @@ public class SelectTokenAdapter extends RecyclerView.Adapter<SelectTokenAdapter.
         updateList(tokenFilter.filterBy(keyword));
     }
 
-    public void updateList(List<Connection.LToken> filteredList)
+    public void updateList(List<Token> filteredList)
     {
         displayData.clear();
         displayData.addAll(filteredList);

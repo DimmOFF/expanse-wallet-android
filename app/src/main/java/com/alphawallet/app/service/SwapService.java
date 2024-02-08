@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import com.alphawallet.app.C;
 import com.alphawallet.app.entity.lifi.Connection;
+import com.alphawallet.app.entity.lifi.Token;
 import com.alphawallet.app.util.BalanceUtils;
 import com.alphawallet.app.util.JsonUtils;
 
@@ -79,7 +80,7 @@ public class SwapService
         return Single.fromCallable(() -> fetchPairs(from, to));
     }
 
-    public Single<String> getQuote(Connection.LToken source, Connection.LToken dest, String address, String amount, String slippage)
+    public Single<String> getQuote(Token source, Token dest, String address, String amount, String slippage)
     {
         return Single.fromCallable(() -> fetchQuote(source, dest, address, amount, slippage));
     }
@@ -100,7 +101,7 @@ public class SwapService
         return executeRequest(builder.build().toString());
     }
 
-    public String fetchQuote(Connection.LToken source, Connection.LToken dest, String address, String amount, String slippage)
+    public String fetchQuote(Token source, Token dest, String address, String amount, String slippage)
     {
         Uri.Builder builder = new Uri.Builder();
         builder.encodedPath(SWAP_TOKEN)

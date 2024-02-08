@@ -408,9 +408,7 @@ open class WCClient : WebSocketListener() {
             WCMethod.ADD_ETHEREUM_CHAIN -> {
                 handleAddChain(request)
             }
-            else -> {
-                Timber.d("WCMethod: Unsupported request method")
-            }
+            else -> {}
         }
     }
 

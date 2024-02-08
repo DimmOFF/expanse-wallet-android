@@ -25,7 +25,7 @@ import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.entity.lifi.Chain;
 import com.alphawallet.app.entity.lifi.Connection;
 import com.alphawallet.app.entity.lifi.Quote;
-import com.alphawallet.app.entity.tokens.Token;
+import com.alphawallet.app.entity.lifi.Token;
 import com.alphawallet.app.ui.widget.entity.ActionSheetCallback;
 import com.alphawallet.app.util.BalanceUtils;
 import com.alphawallet.app.util.SwapUtils;
@@ -70,9 +70,9 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
     private MaterialButton continueBtn;
     private MaterialButton openSettingsBtn;
     private TextView chainName;
-    private Token token;
+    private com.alphawallet.app.entity.tokens.Token token;
     private Wallet wallet;
-    private Connection.LToken sourceToken;
+    private Token sourceToken;
     private List<Chain> chains;
     private final Handler getQuoteHandler = new Handler();
     private final Runnable getQuoteRunnable = new Runnable()
@@ -190,7 +190,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
             }
 
             @Override
-            public void onSelectionChanged(Connection.LToken token)
+            public void onSelectionChanged(Token token)
             {
                 sourceTokenChanged(token);
             }
@@ -198,7 +198,13 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
             @Override
             public void onMaxClicked()
             {
-                String max = viewModel.getBalance(sourceSelector.getToken());
+                Token token = sourceSelector.getToken();
+                if (token == null)
+                {
+                    return;
+                }
+
+                String max = viewModel.getBalance(token);
                 if (!max.isEmpty())
                 {
                     sourceSelector.setAmount(max);
@@ -221,7 +227,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
             }
 
             @Override
-            public void onSelectionChanged(Connection.LToken token)
+            public void onSelectionChanged(Token token)
             {
                 destTokenChanged(token);
             }
@@ -248,7 +254,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
         ActionSheetDialog confDialog = null;
         try
         {
-            Token activeToken = viewModel.getTokensService().getTokenOrBase(sourceToken.chainId, sourceToken.address);
+            com.alphawallet.app.entity.tokens.Token activeToken = viewModel.getTokensService().getTokenOrBase(sourceToken.chainId, sourceToken.address);
             Web3Transaction w3Tx = viewModel.buildWeb3Transaction(quote);
             confDialog = new ActionSheetDialog(this, w3Tx, activeToken,
                     "", w3Tx.recipient.toString(), viewModel.getTokensService(), this);
@@ -264,7 +270,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
         return confDialog;
     }
 
-    private void destTokenChanged(Connection.LToken token)
+    private void destTokenChanged(Token token)
     {
         destSelector.setBalance(viewModel.getBalance(token));
 
@@ -275,7 +281,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
         startQuoteTask(0);
     }
 
-    private void sourceTokenChanged(Connection.LToken token)
+    private void sourceTokenChanged(Token token)
     {
         if (destSelector.getToken() == null)
         {
@@ -304,7 +310,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
     }
 
     // The source token should default to the token selected in the main wallet dialog (ie the token from the intent).
-    private void initSourceToken(Connection.LToken selectedToken)
+    private void initSourceToken(Token selectedToken)
     {
         if (selectedToken != null)
         {
@@ -318,7 +324,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
         }
     }
 
-    private void initFromDialog(List<Connection.LToken> fromTokens)
+    private void initFromDialog(List<Token> fromTokens)
     {
         Tokens.sortValue(fromTokens);
         sourceTokenDialog = new SelectTokenDialog(fromTokens, this, tokenItem -> {
@@ -327,7 +333,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
         });
     }
 
-    private void initToDialog(List<Connection.LToken> toTokens)
+    private void initToDialog(List<Token> toTokens)
     {
         Tokens.sortName(toTokens);
         Tokens.sortValue(toTokens);
@@ -400,13 +406,13 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
     {
         if (!connections.isEmpty())
         {
-            List<Connection.LToken> fromTokens = new ArrayList<>();
-            List<Connection.LToken> toTokens = new ArrayList<>();
-            Connection.LToken selectedToken = null;
+            List<Token> fromTokens = new ArrayList<>();
+            List<Token> toTokens = new ArrayList<>();
+            Token selectedToken = null;
 
             for (Connection c : connections)
             {
-                for (Connection.LToken t : c.fromTokens)
+                for (Token t : c.fromTokens)
                 {
                     if (!fromTokens.contains(t))
                     {
@@ -425,7 +431,7 @@ public class SwapActivity extends BaseActivity implements StandardFunctionInterf
                     }
                 }
 
-                for (Connection.LToken t : c.toTokens)
+                for (Token t : c.toTokens)
                 {
                     if (!toTokens.contains(t))
                     {

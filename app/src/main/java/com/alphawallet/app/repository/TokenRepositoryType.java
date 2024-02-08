@@ -14,15 +14,7 @@ import com.alphawallet.app.entity.TransferFromEventResponse;
 import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.service.AssetDefinitionService;
 
-import io.reactivex.disposables.Disposable;
-
-import com.alphawallet.app.entity.TransferFromEventResponse;
-import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.entity.nftassets.NFTAsset;
-import com.alphawallet.app.entity.tokens.Token;
-import com.alphawallet.app.entity.tokens.TokenCardMeta;
-import com.alphawallet.app.entity.tokens.TokenInfo;
-import com.alphawallet.app.service.AssetDefinitionService;
 import com.alphawallet.token.entity.ContractAddress;
 
 import java.math.BigDecimal;
