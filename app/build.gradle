@@ -269,7 +269,7 @@ dependencies {
 
     // dagger-hilt
     implementation libs.hilt.android
-    implementation libs.play.core
+    implementation libs.play.core.ktx
     annotationProcessor libs.hilt.compiler
 
     // WebKit - for WebView Dark Mode (NB Can't be upgraded from 1.7.0 until migration to Gradle 8)
