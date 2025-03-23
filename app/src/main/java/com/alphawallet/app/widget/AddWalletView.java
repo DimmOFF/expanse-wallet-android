@@ -5,6 +5,7 @@ import androidx.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.alphawallet.app.R;
 
@@ -14,6 +15,7 @@ public class AddWalletView extends FrameLayout implements View.OnClickListener {
     private OnImportWalletClickListener onImportWalletClickListener;
     private OnWatchWalletClickListener onWatchWalletClickListener;
     private OnCloseActionListener onCloseActionListener;
+//    private OnHardwareCardActionListener onHardwareCardClickListener;
 
     public AddWalletView(Context context) {
         this(context, R.layout.layout_dialog_add_account);
@@ -34,38 +36,41 @@ public class AddWalletView extends FrameLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
-        final int close_action = R.id.close_action;
-        final int new_account_action = R.id.new_account_action;
-        final int import_account_action = R.id.import_account_action;
-        final int watch_account_action = R.id.watch_account_action;
-
-        switch (view.getId()) {
-            case close_action: {
-                if (onCloseActionListener != null) {
-                    onCloseActionListener.onClose(view);
-                }
-                break;
-            }
-            case new_account_action: {
-                if (onNewWalletClickListener != null) {
-                    onNewWalletClickListener.onNewWallet(view);
-                }
-                break;
-            }
-            case import_account_action: {
-                if (onImportWalletClickListener != null) {
-                    onImportWalletClickListener.onImportWallet(view);
-                }
-                break;
-            }
-            case watch_account_action: {
-                if (onWatchWalletClickListener != null) {
-                    onWatchWalletClickListener.onWatchWallet(view);
-                }
-                break;
+        if (view.getId() == R.id.close_action)
+        {
+            if (onCloseActionListener != null)
+            {
+                onCloseActionListener.onClose(view);
             }
         }
+        else if (view.getId() == R.id.new_account_action)
+        {
+            if (onNewWalletClickListener != null)
+            {
+                onNewWalletClickListener.onNewWallet(view);
+            }
+        }
+        else if (view.getId() == R.id.import_account_action)
+        {
+            if (onImportWalletClickListener != null)
+            {
+                onImportWalletClickListener.onImportWallet(view);
+            }
+        }
+        else if (view.getId() == R.id.watch_account_action)
+        {
+            if (onWatchWalletClickListener != null)
+            {
+                onWatchWalletClickListener.onWatchWallet(view);
+            }
+        }
+//        else if (view.getId() == R.id.hardware_card)
+//        {
+//            if (onHardwareCardClickListener != null)
+//            {
+//                onHardwareCardClickListener.detectCard(view);
+//            }
+//        }
     }
 
     public void setOnNewWalletClickListener(OnNewWalletClickListener onNewWalletClickListener) {
@@ -79,6 +84,11 @@ public class AddWalletView extends FrameLayout implements View.OnClickListener {
     public void setOnWatchWalletClickListener(OnWatchWalletClickListener onWatchWalletClickListener) {
         this.onWatchWalletClickListener = onWatchWalletClickListener;
     }
+
+//    public void setOnHardwareCardClickListener(OnHardwareCardActionListener onHardwareCardClickListener)
+//    {
+//        this.onHardwareCardClickListener = onHardwareCardClickListener;
+//    }
 
     public void setOnCloseActionListener(OnCloseActionListener onCloseActionListener) {
         this.onCloseActionListener = onCloseActionListener;
@@ -99,4 +109,18 @@ public class AddWalletView extends FrameLayout implements View.OnClickListener {
     public interface OnCloseActionListener {
         void onClose(View view);
     }
+
+    public interface OnHardwareCardActionListener
+    {
+        void detectCard(View view);
+    }
+
+//    public void setHardwareActive(boolean isStub)
+//    {
+//        TextView hardwareText = findViewById(R.id.hardware_card);
+//        if (isStub)
+//        {
+//            hardwareText.setVisibility(View.GONE);
+//        }
+//    }
 }

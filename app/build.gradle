@@ -1,45 +1,25 @@
-//noinspection GradleDependency
-// WARNING WARNING WARNING
-// don't add any additional things here without first search "China" in this file
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "gradle.plugin.com.worker8.android_lint_reporter:android_lint_reporter:2.1.0"
-        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.20.0-RC1"
-        classpath "com.dicedmelon.gradle:jacoco-android:0.1.5"
-    }
+plugins {
+    alias(libs.plugins.androidApplication)
+    id("com.worker8.android_lint_reporter") version "2.1.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.5"
+    id 'jacoco'
 }
 
-// WARNING WARNING WARNING
-// DON'T add any plugins that is Google Play Service or uses Google Play Service
-// Search China in this file for the reason
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.worker8.android_lint_reporter'
 apply plugin: 'io.gitlab.arturbosch.detekt'
-apply plugin: 'com.dicedmelon.gradle.jacoco-android'
+apply plugin: 'jacoco'
 
-jacocoAndroidUnitTestReport {
-    csv.enabled false
-    html.enabled true
-    xml.enabled true
+jacoco {
+    toolVersion = "0.8.8"
 }
 
-jacocoAndroidUnitTestReport {
-    excludes += [
-            '**/*Realm*.*',
-            '**/Generated*.*',
-            '**/*_*.*'
-    ]
+tasks.withType(Test).configureEach {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 detekt {
@@ -64,6 +44,8 @@ repositories {
 }
 
 android {
+    namespace 'com.alphawallet.app'
+
     sourceSets {
         main {
 
@@ -80,18 +62,20 @@ android {
         versionProps.store(versionPropsFile.newWriter(), null)
     }
     else {
-        throw new GradleException("Could not read version.properties!")
+        //throw new GradleException("Could not read version.properties!")
     }
 
     defaultConfig {
+        applicationId "com.dmflabs.expwallet"
         versionCode code
         versionName "0.9.7"
+        minSdk 24
+        targetSdk 34
+        compileSdk 34
 
-        applicationId "com.dmflabs.expwallet"
-        minSdkVersion 23
-        targetSdkVersion 33
-        compileSdk 33
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        android.buildFeatures.buildConfig true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
         archivesBaseName = "expwallet-ver.$versionName.$versionCode"
 
@@ -178,25 +162,16 @@ android {
             }
     }
     packagingOptions {
-        exclude 'META-INF/NOTICE' // will not include NOTICE file
-        exclude 'META-INF/LICENSE' // will not include LICENSE file
-        exclude 'META-INF/LICENSE.md'
-        exclude 'META-INF/NOTICE.md'
-        exclude 'META-INF/LICENSE-notice.md'
-        exclude 'solidity/ens/build/*.bin'
-        exclude 'solidity/ens/*.sol'
-        exclude 'solidity/ens/build/*.abi'
-        exclude 'en-mnemonic-word-list.txt'
-        exclude 'solidity/*'
-    }
-    lintOptions {
-        baseline file("./check/lint-baseline.xml")
-        lintConfig file('./check/lint-rules.xml')
-        abortOnError false
+        jniLibs {
+            excludes += ['solidity/*']
+        }
+        resources {
+            excludes += ['META-INF/NOTICE', 'META-INF/LICENSE', 'META-INF/LICENSE.md', 'META-INF/NOTICE.md', 'META-INF/LICENSE-notice.md', 'solidity/ens/build/*.bin', 'solidity/ens/*.sol', 'solidity/ens/build/*.abi', 'en-mnemonic-word-list.txt', 'solidity/*']
+        }
     }
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
     }
     externalNativeBuild {
         cmake {
@@ -211,90 +186,145 @@ android {
         }
         animationsDisabled = true
     }
+    buildFeatures {
+        viewBinding true
+    }
+    lint {
+        abortOnError false
+        baseline file('./check/lint-baseline.xml')
+        lintConfig file('./check/lint-rules.xml')
+    }
+    ndkVersion '27.0.12077973'
 }
 
-task printVersionName {
+tasks.register("printVersionName") {
     doLast {
         println android.defaultConfig.versionName
     }
 }
 
-task printVersionCode {
+tasks.register("printVersionCode") {
     doLast {
         println android.defaultConfig.versionCode
     }
 }
 
+tasks.register("jacocoAndroidUnitTestReport") {
+    reports {
+        csv.enabled false
+        html.enabled true
+        xml.enabled true
+    }
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/*$ViewInjector*.*', '**/BuildConfig.*', '**/Manifest*.*', '**/*Realm*.*', '**/Generated*.*', '**/*_*.*']
+    def debugTree = fileTree(dir: "**/", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree]))
+}
+
+
 dependencies {
-    implementation project(":lib")
+    implementation project(':lib')
 
-    // WARNING! WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!
-    // WARNING!  Don't add dependency on Google Play Services without consulting
-    // WARNING!  The China marketing team
-    // WARNING!  Many Chinese Android phones execute (meaning terminate) any app that
-    // WARNING!  users google gms summarily, like immune systems cleansing infections
-    // WARNING! WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!  WARNING!
-
-    // Ethereum client
-    //implementation "org.web3j:core:4.8.8-android"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2.2'
-    implementation 'org.slf4j:slf4j-api:2.0.0-alpha7'
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
+    //NB: Downgrade jackson due to bug in 2.15 releases that makes it incompatible with Gradle 8
+    //noinspection GradleDependency
+    implementation platform('com.fasterxml.jackson:jackson-bom:2.13.5') //Don't upgrade from 2.13.5 due to Android API24 compatibility
+    implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    implementation libs.slf4j.api
+    implementation libs.core.splashscreen
 
     // Http client
-    implementation "com.squareup.okhttp3:okhttp:4.9.0"
-    implementation 'com.google.code.gson:gson:2.9.0'
-    implementation "com.squareup.picasso:picasso:2.71828"
-    //noinspection GradleDependency
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1' //This cannot be updated until minSdkVersion is 31.
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    //noinspection GradleDependency,GradleCompatible
-    implementation 'androidx.appcompat:appcompat:1.3.1' //Do not update; next version is incompatible with API30 and below
-    implementation 'com.google.android.material:material:1.6.0'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.biometric:biometric:1.1.0'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation libs.okhttp
+    implementation libs.gson
+
+    implementation libs.appcompat
+    implementation libs.material //'com.google.android.material:material:1.9.0'
+    implementation libs.vectordrawable
+    implementation libs.recyclerview
+    implementation libs.biometric
+    implementation libs.gridlayout
 
     // Bar code scanning
-    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
-    implementation 'com.google.zxing:core:3.4.1'
+    implementation libs.zxing.android.embedded
+    implementation libs.core
 
     // Sugar
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'com.github.apl-devs:appintro:v4.2.2'
-    implementation 'com.romandanylyk:pageindicatorview:1.0.0'
+    implementation libs.constraintlayout
 
     //coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
 
     // ReactiveX
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation libs.rxjava
+    implementation libs.rxandroid
 
     // Keyboard visibility
-    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3'
-
-    //implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2.2'
-    //implementation 'org.slf4j:slf4j-nop:1.7.25'
+    implementation libs.keyboardvisibilityevent
 
     // Dagger 2
 
     // dagger-hilt
-    implementation "com.google.dagger:hilt-android:2.40.5"
-    annotationProcessor "com.google.dagger:hilt-compiler:2.40.5"
+    implementation libs.hilt.android
+    implementation libs.play.core
+    annotationProcessor libs.hilt.compiler
 
-    // WebKit - for WebView Dark Mode
-    implementation 'androidx.webkit:webkit:1.4.0'
+    // WebKit - for WebView Dark Mode (NB Can't be upgraded from 1.7.0 until migration to Gradle 8)
+    implementation libs.webkit
 
     //Use Leak Canary for debug builds only
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
     // Image Loader
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation libs.glide
+    annotationProcessor libs.compiler
+    implementation libs.guava
+    implementation libs.wallet.core
+    //noinspection UseTomlInstead
+    implementation 'com.github.florent37:TutoShowcase:d8b91be8a2'
+    implementation libs.flexbox.layout
+    implementation libs.kotson
+    implementation libs.mailchimp.sdk.android
+    implementation libs.preference.ktx
 
-    implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-android'
+    //Timber
+    implementation libs.timber
+
+    //noinspection UseTomlInstead
+    implementation platform('com.walletconnect:android-bom:1.13.1')
+    implementation("com.walletconnect:android-core", {
+        exclude group: 'org.web3j', module: '*'
+    })
+    implementation("com.walletconnect:web3wallet", {
+        exclude group: 'org.web3j', module: '*'
+    })
+
+    runtimeOnly libs.work.runtime.ktx
+
+    //Analytics
+    //nalyticsImplementation libs.play.core
+    analyticsImplementation libs.firebase.analytics
+    analyticsImplementation libs.mixpanel.android
+    analyticsImplementation libs.firebase.crashlytics
+
+    // Notifications: NB there appears to be an incompatibility in the newer builds of firebase-messaging.
+    // Update when resolved.
+    //noinspection GradleDependency
+    implementation libs.firebase.messaging
+
+
+    //
+    // Testing libraries
+    //
+
+    // Updating breaks the tests
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
+    androidTestImplementation 'androidx.browser:browser:1.8.0'
 
     // Unit tests
     testImplementation 'junit:junit:4.13.2'
@@ -302,16 +332,20 @@ dependencies {
     testImplementation group: 'org.powermock', name: 'powermock-module-junit4-rule-agent', version: '2.0.9'
     testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.9'
     testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.9'
+    testImplementation group: 'org.json', name: 'json', version: '20240303'
 
-    // Component tests
-    testImplementation 'org.robolectric:robolectric:4.8'
+    // Component tests: Updating these appears to break the tests.
+    testImplementation 'org.robolectric:robolectric:4.8.2'
     testImplementation 'androidx.test:core:1.4.0'
-    testImplementation 'androidx.test.ext:junit:1.1.3'
+    testImplementation 'androidx.test.ext:junit:1.1.4'
 
-    // E2e tests
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test:core:1.4.0'
-    androidTestUtil 'androidx.test:orchestrator:1.4.1'
+    // E2e tests: Updating these values breaks the e2e tests. Versioning here is only for tests:
+    // no need to update unless it stops working due to incompatibility
+    androidTestImplementation 'androidx.test:runner:1.5.0-alpha02'
+    androidTestImplementation 'androidx.test:core:1.4.1-alpha05'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2-alpha02'
+    testImplementation 'org.hamcrest:hamcrest:2.1'
+
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: "com.android.support", module: "support-annotations"
     })
@@ -319,34 +353,4 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
-
-    implementation group: 'com.trustwallet', name: 'wallet-core', version: '2.6.3'
-
-    implementation 'com.github.florent37:tutoshowcase:1.0.1'
-
-    // Do not upgrade unless we have migrated to AndroidX
-    implementation 'com.google.android:flexbox:2.0.1'
-
-    implementation 'com.github.salomonbrys.kotson:kotson:2.5.0'
-
-    implementation 'com.github.mailchimp:mailchimp-sdk-android:1.0.0'
-    implementation 'androidx.preference:preference-ktx:1.2.0'
-
-    //Timber
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-
-    implementation 'androidx.work:work-runtime:2.7.1'
-
-    //Analytics
-    analyticsImplementation 'com.google.android.play:core:1.10.3'
-    analyticsImplementation 'com.google.firebase:firebase-analytics:20.1.2'
-    analyticsImplementation 'com.mixpanel.android:mixpanel-android:5.8.4'
-    analyticsImplementation 'com.google.firebase:firebase-crashlytics:18.2.9'
 }
-
-// WARNING WARNING WARNING
-// don't add any additional things here without first search "China" in this file
-

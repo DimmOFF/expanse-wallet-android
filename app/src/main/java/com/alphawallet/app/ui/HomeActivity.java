@@ -1088,30 +1088,6 @@ public class HomeActivity extends BaseNavigationActivity implements View.OnClick
         }
     }
 
-    @SuppressLint("RestrictedApi")
-    @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu)
-    {
-        if (menu != null)
-        {
-            if (menu.getClass().getSimpleName().equals("MenuBuilder"))
-            {
-                try
-                {
-                    Method m = menu.getClass().getDeclaredMethod(
-                            "setOptionalIconsVisible", Boolean.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(menu, true);
-                }
-                catch (Exception e)
-                {
-                    Timber.e(e, "onMenuOpened...unable to set icons for overflow menu");
-                }
-            }
-        }
-        return super.onPrepareOptionsPanel(view, menu);
-    }
-
     public static void setUpdatePrompt()
     {
         //TODO: periodically check this value (eg during page flipping)

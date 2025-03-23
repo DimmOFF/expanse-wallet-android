@@ -10,13 +10,11 @@ import com.alphawallet.app.entity.AnalyticsProperties;
 import com.alphawallet.app.entity.ServiceErrorException;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
 
 public class AnalyticsService<T> implements AnalyticsServiceType<T> {
 
@@ -99,11 +97,12 @@ public class AnalyticsService<T> implements AnalyticsServiceType<T> {
         firebaseAnalytics.setUserId(uuid);
         mixpanelAPI.identify(uuid);
         mixpanelAPI.getPeople().identify(uuid);
-        FirebaseInstanceId.getInstance().getInstanceId()
+
+        FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful())
                     {
-                        String token = Objects.requireNonNull(task.getResult()).getToken();
+                        String token = task.getResult();
                         mixpanelAPI.getPeople().setPushRegistrationId(token);
                     }
                 });

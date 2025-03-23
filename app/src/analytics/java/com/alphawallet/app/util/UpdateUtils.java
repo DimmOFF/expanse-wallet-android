@@ -11,6 +11,7 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
 
+
 public class UpdateUtils {
     public static void checkForUpdates(Activity context, FragmentMessenger messenger) {
         AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(context);

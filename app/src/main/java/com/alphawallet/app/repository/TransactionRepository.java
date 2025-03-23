@@ -13,6 +13,8 @@ import com.alphawallet.app.service.AccountKeystoreService;
 import com.alphawallet.app.service.TransactionsService;
 import com.alphawallet.token.entity.Signable;
 
+import org.web3j.crypto.transaction.type.ITransaction;
+import org.web3j.crypto.transaction.type.Transaction1559;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.utils.Numeric;
@@ -199,34 +201,61 @@ public class TransactionRepository implements TransactionRepositoryType {
 		});
 	}
 
-	private Single<TransactionData> storeUnconfirmedTransaction(Wallet from, TransactionData txData, String toAddress, BigInteger value, BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, long chainId, String data, String contractAddr)
-	{
-		return Single.fromCallable(() -> {
-			Transaction newTx = new Transaction(txData.txHash, "0", "0", System.currentTimeMillis()/1000, nonce.intValue(), from.address, toAddress, value.toString(10), "0", gasPrice.toString(10), data,
-					gasLimit.toString(10), chainId, contractAddr);
-			//newTx.completeSetup(from.address);
-			inDiskCache.putTransaction(from, newTx);
-			transactionsService.markPending(newTx);
+    private Single<String> storeUnconfirmedTransaction(Wallet from, String txHash, ITransaction itx, long chainId, String contractAddr)
+    {
+        return Single.fromCallable(() -> {
+            Transaction newTx;
+            if (itx instanceof Transaction1559)
+            {
+                newTx = new Transaction(txHash, "0", "0", System.currentTimeMillis() / 1000, itx.getNonce().intValue(), from.address,
+                        itx.getTo(), itx.getValue().toString(10), "0", "0", ((Transaction1559) itx).getMaxFeePerGas().toString(10),
+                        ((Transaction1559) itx).getMaxPriorityFeePerGas().toString(10), itx.getData(),
+                        itx.getGasLimit().toString(10), chainId, contractAddr);
+            }
+            else
+            {
+                newTx = new Transaction(txHash, "0", "0", System.currentTimeMillis() / 1000, itx.getNonce().intValue(), from.address,
+                        itx.getTo(), itx.getValue().toString(10), "0", itx.getGasPrice().toString(10), itx.getData(),
+                        itx.getGasLimit().toString(10), chainId, contractAddr, ""); //TODO: Function Name
+            }
 
-			return txData;
-		});
-	}
+            inDiskCache.putTransaction(from, newTx);
+            transactionsService.markPending(newTx);
 
-	private Single<String> storeUnconfirmedTransaction(Wallet from, String txHash, String toAddress, BigInteger value, BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, long chainId, String data)
-	{
-		return Single.fromCallable(() -> {
+            return txHash;
+        });
+    }
 
-			Transaction newTx = new Transaction(txHash, "0", "0", System.currentTimeMillis()/1000, nonce.intValue(), from.address, toAddress, value.toString(10), "0", gasPrice.toString(10), data,
-					gasLimit.toString(10), chainId, "");
-			//newTx.completeSetup(from.address);
-			inDiskCache.putTransaction(from, newTx);
-			transactionsService.markPending(newTx);
+    private Single<String> storeUnconfirmedTransaction(Wallet from, String txHash, String toAddress, BigInteger value, BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit,
+                                                       long chainId, String data)
+    {
+        return Single.fromCallable(() -> {
 
-			return txHash;
-		});
-	}
+            Transaction newTx = new Transaction(txHash, "0", "0", System.currentTimeMillis() / 1000, nonce.intValue(), from.address,
+                    toAddress, value.toString(10), "0", gasPrice.toString(10), data,
+                    gasLimit.toString(10), chainId, "", ""); //TODO: Function Name
+            //newTx.completeSetup(from.address);
+            inDiskCache.putTransaction(from, newTx);
+            transactionsService.markPending(newTx);
 
-	@Override
+            return txHash;
+        });
+    }
+
+    private Single<TransactionData> storeUnconfirmedTransaction(Wallet from, TransactionData txData, String toAddress, BigInteger value, BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, long chainId, String data, String contractAddr)
+    {
+        return Single.fromCallable(() -> {
+            Transaction newTx = new Transaction(txData.txHash, "0", "0", System.currentTimeMillis()/1000, nonce.intValue(), from.address, toAddress, value.toString(10), "0", gasPrice.toString(10), data,
+                    gasLimit.toString(10), chainId, contractAddr, "");
+            //newTx.completeSetup(from.address);
+            inDiskCache.putTransaction(from, newTx);
+            transactionsService.markPending(newTx);
+
+            return txData;
+        });
+    }
+
+    @Override
 	public Single<SignatureFromKey> getSignature(Wallet wallet, Signable message, long chainId) {
 		return accountKeystoreService.signMessage(wallet, message, chainId);
 	}

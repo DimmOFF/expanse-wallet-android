@@ -1,23 +1,17 @@
 package com.alphawallet.token.web;
 
 import com.alphawallet.token.entity.Attribute;
-import com.github.cliftonlabs.json_simple.JsonObject;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -53,12 +47,10 @@ import com.alphawallet.token.entity.MagicLinkData;
 import com.alphawallet.token.entity.MagicLinkInfo;
 import com.alphawallet.token.entity.NonFungibleToken;
 import com.alphawallet.token.entity.SalesOrderMalformed;
-import com.alphawallet.token.entity.XMLDsigVerificationResult;
 import com.alphawallet.token.entity.TokenScriptResult;
 import com.alphawallet.token.entity.TransactionResult;
 import com.alphawallet.token.tools.ParseMagicLink;
 import com.alphawallet.token.tools.TokenDefinition;
-import com.alphawallet.token.tools.XMLDSigVerifier;
 import com.alphawallet.token.web.Ethereum.TokenscriptFunction;
 import com.alphawallet.token.web.Ethereum.TransactionHandler;
 import com.alphawallet.token.web.Service.CryptoFunctions;

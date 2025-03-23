@@ -1,4 +1,3 @@
-
 #include <string.h>
 #include <alloca.h>
 #include <jni.h>
@@ -9,28 +8,42 @@
 #   define HAS_KEYS 0
 #endif
 
+#define QUOTE(str) #str
+#define EXPAND_AND_QUOTE(str) QUOTE(str)
+
 #ifdef IFKEY
 #   define HAS_INFURA 1
+#   define INFURA_Q EXPAND_AND_QUOTE(IFKEY)
 #else
 #   define HAS_INFURA 0
 #endif
 
 #ifdef OSKEY
 #   define HAS_OS 1
+#   define OSKEY_Q EXPAND_AND_QUOTE(OSKEY)
 #else
 #   define HAS_OS 0
 #endif
 
 #ifdef PSKEY
 #   define HAS_PS 1
+#   define PSKEY_Q EXPAND_AND_QUOTE(PSKEY)
 #else
 #   define HAS_PS 0
 #endif
 
 #ifdef ASKEY
 #   define HAS_AS 1
+#   define ASKEY_Q EXPAND_AND_QUOTE(ASKEY)
 #else
 #   define HAS_AS 0
+#endif
+
+#ifdef WCKEY
+#   define HAS_WC 1
+#   define WCKEY_Q EXPAND_AND_QUOTE(WCKEY)
+#else
+#   define HAS_WC 0
 #endif
 
 JNIEXPORT jstring JNICALL
@@ -50,7 +63,7 @@ Java_com_alphawallet_app_repository_EthereumNetworkBase_getInfuraKey( JNIEnv* en
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, infuraKey);
 #elif (HAS_INFURA == 1)
-    return (*env)->NewStringUTF(env, IFKEY);
+    return (*env)->NewStringUTF(env, INFURA_Q);
 #else
     const jstring key = "da3717f25f824cc1baa32d812386d93f";
     return (*env)->NewStringUTF(env, key);
@@ -118,7 +131,7 @@ Java_com_alphawallet_app_repository_EthereumNetworkBase_getSecondaryInfuraKey( J
 #if (HAS_KEYS == 1)
     return getDecryptedKey(env, secondaryInfuraKey);
 #elif (HAS_INFURA == 1)
-    return (*env)->NewStringUTF(env, IFKEY);
+    return (*env)->NewStringUTF(env, INFURA_Q);
 #else
     const jstring key = "da3717f25f824cc1baa32d812386d93f";
     return (*env)->NewStringUTF(env, key);

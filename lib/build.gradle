@@ -1,27 +1,46 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:5.1.0'
-    }
+plugins {
+    id 'com.android.library'
 }
 
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'java-library'
+android {
+    namespace 'com.alphawallet'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
 
 dependencies {
-    implementation files('..\\app\\libs\\abi-4.8.8-android.jar')
-    implementation files('..\\app\\libs\\core-4.8.8-android.jar')
-    implementation files('..\\app\\libs\\crypto-4.8.8-android.jar')
-    implementation files('..\\app\\libs\\utils-4.8.8-android.jar')
-    testImplementation 'junit:junit:4.12'
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.62'
+
+    implementation files('../app/libs/abi-4.9.8.jar')
+    implementation files('../app/libs/core-4.9.8.jar')
+    implementation files('../app/libs/crypto-4.9.8.jar')
+    implementation files('../app/libs/utils-4.9.8.jar')
+
+    testImplementation libs.junit
+
+    implementation libs.bouncycastle.bcprov.jdk15on
     // https://mvnrepository.com/artifact/com.github.cliftonlabs/json-simple
-    implementation group: 'com.github.cliftonlabs', name: 'json-simple', version: '3.1.0'
+    implementation libs.json.simple
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    implementation libs.gson
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = "17"
+targetCompatibility = "17"
